@@ -6,19 +6,31 @@ package com.sg.globeTrotter.dto;
 
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author marya
  */
-
 public class Traveller {
 
     private int id;
+
     private String firstName;
+
     private String lastName;
+
     private String postalCode;
+
     private String City;
+
     private String phoneNumber;
 
     private List<Trip> trips;
@@ -124,6 +136,5 @@ public class Traveller {
         }
         return Objects.equals(this.trips, other.trips);
     }
-    
-    
+
 }

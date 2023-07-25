@@ -6,6 +6,13 @@ package com.sg.globeTrotter.dto;
 
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -14,10 +21,25 @@ import java.util.Objects;
 public class Trip {
 
     private int id;
+
     private String title;
+
     private String type;
+
     private String description;
+
     private boolean completed;
+    private List<Accomodation> accomodations;
+
+    private List<Traveller> travellers;
+
+    public List<Traveller> getTravellers() {
+        return travellers;
+    }
+
+    public void setTravellers(List<Traveller> travellers) {
+        this.travellers = travellers;
+    }
 
     public List<Accomodation> getAccomodations() {
         return accomodations;
@@ -26,7 +48,7 @@ public class Trip {
     public void setAccomodations(List<Accomodation> accomodations) {
         this.accomodations = accomodations;
     }
-    private List<Accomodation> accomodations;
+
     public int getId() {
         return id;
     }
@@ -69,13 +91,14 @@ public class Trip {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + this.id;
-        hash = 67 * hash + Objects.hashCode(this.title);
-        hash = 67 * hash + Objects.hashCode(this.type);
-        hash = 67 * hash + Objects.hashCode(this.description);
-        hash = 67 * hash + (this.completed ? 1 : 0);
-        hash = 67 * hash + Objects.hashCode(this.accomodations);
+        int hash = 3;
+        hash = 47 * hash + this.id;
+        hash = 47 * hash + Objects.hashCode(this.title);
+        hash = 47 * hash + Objects.hashCode(this.type);
+        hash = 47 * hash + Objects.hashCode(this.description);
+        hash = 47 * hash + (this.completed ? 1 : 0);
+        hash = 47 * hash + Objects.hashCode(this.accomodations);
+        hash = 47 * hash + Objects.hashCode(this.travellers);
         return hash;
     }
 
@@ -106,9 +129,10 @@ public class Trip {
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
-        return Objects.equals(this.accomodations, other.accomodations);
+        if (!Objects.equals(this.accomodations, other.accomodations)) {
+            return false;
+        }
+        return Objects.equals(this.travellers, other.travellers);
     }
 
-   
-    
 }

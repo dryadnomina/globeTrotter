@@ -10,10 +10,12 @@ import java.util.Objects;
  *
  * @author marya
  */
-
 public class Activity {
+
     private int id;
+
     private Trip trip;
+
     private String name;
 
     public int getId() {
@@ -69,5 +71,5 @@ public class Activity {
         }
         return Objects.equals(this.trip, other.trip);
     }
-    
+
 }

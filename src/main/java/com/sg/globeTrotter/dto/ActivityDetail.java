@@ -4,25 +4,32 @@
  */
 package com.sg.globeTrotter.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author marya
  */
-//
-//	detailId INT NOT NULL AUTO_INCREMENT,
-//	description VARCHAR(255) NULL,
-//	address VARCHAR(150) NOT NULL,
-//    cost DECIMAL NOT NULL,
-//    activityId INT NOT NULL,
-//	PRIMARY KEY pk_detailId (detailId)  
+@Entity(name = "detail")
 public class ActivityDetail {
+
     private int id;
+
     private String description;
+
     private String address;
+
     private BigDecimal cost;
+
     private Activity activity;
 
     public int getId() {
@@ -102,6 +109,5 @@ public class ActivityDetail {
         }
         return Objects.equals(this.activity, other.activity);
     }
-    
-    
+
 }

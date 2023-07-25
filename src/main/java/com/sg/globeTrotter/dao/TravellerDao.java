@@ -4,10 +4,23 @@
  */
 package com.sg.globeTrotter.dao;
 
+import com.sg.globeTrotter.dto.Traveller;
+import java.util.List;
+
 /**
  *
  * @author marya
  */
 public interface TravellerDao {
-    
+
+    Traveller getTravellerByID(int id);
+
+    List<Traveller> getAllTravellers();
+
+    Traveller addTraveller(Traveller traveller);
+
+    void updateTraveller(Traveller traveller);
+
+    void deleteTravellerByID(int id);
 }
+

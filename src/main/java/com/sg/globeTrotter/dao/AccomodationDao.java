@@ -4,10 +4,23 @@
  */
 package com.sg.globeTrotter.dao;
 
+import com.sg.globeTrotter.dto.Accomodation;
+import java.util.List;
+
 /**
  *
  * @author marya
  */
 public interface AccomodationDao {
-    
+
+    Accomodation getAccomodationByID(int id);
+
+    List<Accomodation> getAllAccomodations();
+
+    Accomodation addAccomodation(Accomodation accomodation);
+
+    void updateAccomodation(Accomodation accomodation);
+
+    void deleteAccomodationByID(int id);
+
 }

@@ -4,10 +4,22 @@
  */
 package com.sg.globeTrotter.dao;
 
+import com.sg.globeTrotter.dto.Activity;
+import java.util.List;
+
 /**
  *
  * @author marya
  */
 public interface ActivityDao {
-    
+
+    Activity getActivityByID(int id);
+
+    List<Activity> getAllActivitys();
+
+    Activity addActivity(Activity activity);
+
+    void updateActivity(Activity activity);
+
+    void deleteActivityByID(int id);
 }
