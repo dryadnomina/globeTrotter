@@ -10,11 +10,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author marya
  */
+
+@Repository
 public class TripDaoImpl implements TripDao {
 
     @Autowired
@@ -33,29 +36,33 @@ public class TripDaoImpl implements TripDao {
 
     @Override
     public List<Trip> getAllTrips() {
-        String sql = "SELECT * FROM trip;";
+        String sql = "SELECT * FROM trip";
         return jdbc.query(sql, new TripMapper());
     }
 
     @Override
     public Trip addTrip(Trip trip) {
-        final String sql = "INSERT INTO trip (title,type,description,completed) "
+        
+        final String sql = "INSERT INTO trip(title,type,description,completed) "
                 + "VALUES(?,?,?,?)";
+        System.out.println("title"+trip.getTitle()+"\ntype "+trip.getType()+"\nDesc"+ trip.getDescription()+"\nCompleted"+
+                trip.isCompleted());
 
         jdbc.update(sql,
                 trip.getTitle(),
                 trip.getType(),
-                trip.getAccomodations(),
+                trip.getDescription(),
                 trip.isCompleted());
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         trip.setId(newId);
         return trip;
+
     }
 
     @Override
     public void updateTrip(Trip trip) {
-        String sql = "UPDATE trip SET title = ?,type = ?,description = ? completed = ? WHERE tripId = ?";
+        String sql = "UPDATE trip SET title = ?,type = ?,description = ?, completed = ? WHERE tripId = ?";
         jdbc.update(sql, trip.getTitle(),
                 trip.getType(),
                 trip.getDescription(),

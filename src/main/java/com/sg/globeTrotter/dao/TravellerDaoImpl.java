@@ -10,11 +10,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author marya
  */
+@Repository
 public class TravellerDaoImpl implements TravellerDao {
 
     @Autowired
@@ -57,7 +59,7 @@ public class TravellerDaoImpl implements TravellerDao {
 
     @Override
     public void updateTraveller(Traveller traveller) {
-        String sql = "UPDATE traveller SET firstName = ?,lastName = ?,phoneNumber = ?,city = ? postalCode = ? WHERE travellerId = ?";
+        String sql = "UPDATE traveller SET firstName = ?,lastName = ?,phoneNumber = ?,city = ?, postalCode = ? WHERE travellerId = ?";
         jdbc.update(sql, traveller.getFirstName(),
                 traveller.getLastName(),
                 traveller.getPhoneNumber(),
