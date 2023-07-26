@@ -15,7 +15,7 @@ public interface ActivityDao {
 
     Activity getActivityByID(int id);
 
-    List<Activity> getAllActivitys();
+    List<Activity> getAllActivities();
 
     Activity addActivity(Activity activity);
 
