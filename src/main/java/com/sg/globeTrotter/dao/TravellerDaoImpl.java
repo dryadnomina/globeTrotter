@@ -5,7 +5,11 @@
 package com.sg.globeTrotter.dao;
 
 import com.sg.globeTrotter.dto.Traveller;
+import com.sg.globeTrotter.mappers.TravellerMapper;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
@@ -13,29 +17,58 @@ import java.util.List;
  */
 public class TravellerDaoImpl implements TravellerDao {
 
+    @Autowired
+    JdbcTemplate jdbc;
+
     @Override
     public Traveller getTravellerByID(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+
+            String sql = "SELECT * FROM traveller WHERE travellerId = ?";
+            return jdbc.queryForObject(sql, new TravellerMapper(), id);
+        } catch (DataAccessException ex) {
+            return null;
+        }
     }
 
     @Override
     public List<Traveller> getAllTravellers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "SELECT * FROM traveller;";
+        return jdbc.query(sql, new TravellerMapper());
     }
 
     @Override
     public Traveller addTraveller(Traveller traveller) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        final String sql = "INSERT INTO traveller (firstName,lastName,phoneNumber,city,postalCode) "
+                + "VALUES(?,?,?,?,?)";
+
+        jdbc.update(sql,
+                traveller.getFirstName(),
+                traveller.getLastName(),
+                traveller.getPhoneNumber(),
+                traveller.getCity(),
+                traveller.getPostalCode());
+
+        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        traveller.setId(newId);
+        return traveller;
     }
 
     @Override
     public void updateTraveller(Traveller traveller) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "UPDATE traveller SET firstName = ?,lastName = ?,phoneNumber = ?,city = ? postalCode = ? WHERE travellerId = ?";
+        jdbc.update(sql, traveller.getFirstName(),
+                traveller.getLastName(),
+                traveller.getPhoneNumber(),
+                traveller.getCity(),
+                traveller.getPostalCode(),
+                traveller.getId());
     }
 
     @Override
     public void deleteTravellerByID(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "DELETE FROM traveller WHERE travellerId = ?";
+        jdbc.update(sql, id);
     }
-    
 }
