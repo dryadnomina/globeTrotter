@@ -18,9 +18,9 @@ public class AccomodationController {
     @Autowired
     AccomodationDao accomodations;
     
-     @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("accomodations", accomodations.getAllAccomodations());
-        return "index";
-    }
+//     @GetMapping("/")
+//    public String index(Model model) {
+//        model.addAttribute("accomodations", accomodations.getAllAccomodations());
+//        return "index";
+//    }
 }

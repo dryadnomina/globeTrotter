@@ -7,7 +7,7 @@ package com.sg.globeTrotter.dao;
 import com.sg.globeTrotter.dto.ActivityDetail;
 import com.sg.globeTrotter.dto.Activity;
 import com.sg.globeTrotter.dto.Trip;
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -84,6 +84,11 @@ public class ActivityDetailDaoImplTest {
         trip.setTitle("Hot girl summer");
         trip.setDescription("Chillin with the girlies");
         trip.setType("beach");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(3);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(false);
         //add trip to database
         Trip addedTrip = tripDao.addTrip(trip);
@@ -114,6 +119,11 @@ public class ActivityDetailDaoImplTest {
         trip.setTitle("Bummer summer");
         trip.setDescription("summertime sadness");
         trip.setType("staycation");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(3);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(true);
         Trip addedTrip = tripDao.addTrip(trip);
 
@@ -148,6 +158,11 @@ public class ActivityDetailDaoImplTest {
         trip.setTitle("Bummer summer");
         trip.setDescription("summertime sadness");
         trip.setType("staycation");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(3);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(true);
         Trip addedTrip = tripDao.addTrip(trip);
 
@@ -164,7 +179,7 @@ public class ActivityDetailDaoImplTest {
 
         ActivityDetail fromDao = detailDao.getActivityDetailByID(addedDetail.getId());
         assertEquals(addedDetail.getActivityId(), fromDao.getActivityId());
-        
+
         fromDao.setAddress("super lame address");
         detailDao.updateActivityDetail(fromDao);
         assertNotEquals(addedDetail.getAddress(), fromDao.getAddress());
@@ -180,6 +195,11 @@ public class ActivityDetailDaoImplTest {
         trip.setTitle("Bummer summer");
         trip.setDescription("summertime sadness");
         trip.setType("staycation");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(3);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(true);
         Trip addedTrip = tripDao.addTrip(trip);
 

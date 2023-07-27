@@ -6,6 +6,7 @@ package com.sg.globeTrotter.dao;
 
 import com.sg.globeTrotter.dto.Accomodation;
 import com.sg.globeTrotter.dto.Trip;
+import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -66,6 +67,11 @@ public class AccomodationDaoImplTest {
         trip.setTitle("YOLO");
         trip.setDescription("Summer BucketList");
         trip.setType("staycation");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(3);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(false);
 
         Trip addedTrip = tripDao.addTrip(trip);
@@ -87,6 +93,11 @@ public class AccomodationDaoImplTest {
         trip.setTitle("Sweet Summer");
         trip.setDescription("Foodies united");
         trip.setType("culinary");
+        LocalDate dateStart2 = LocalDate.now();
+        LocalDate dateEnd2 = LocalDate.now().plusDays(3);
+
+        trip.setStartDate(dateStart2);
+        trip.setEndDate(dateEnd2);
         trip.setCompleted(false);
         Trip addedTrip = tripDao.addTrip(trip);
 
@@ -116,6 +127,11 @@ public class AccomodationDaoImplTest {
         trip.setTitle("Japan tour 202X");
         trip.setDescription("Discovering the ancient cultural wonders!");
         trip.setType("cultural");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(3);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(false);
         Trip addedTrip = tripDao.addTrip(trip);
 
@@ -142,10 +158,15 @@ public class AccomodationDaoImplTest {
         trip.setTitle("Honeymoon on the moon");
         trip.setDescription("Space the final frontier");
         trip.setType("adventure");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(3);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(true);
         Trip addedTrip = tripDao.addTrip(trip);
 
-         Accomodation accomodation = new Accomodation();
+        Accomodation accomodation = new Accomodation();
         accomodation.setTrip(addedTrip);
         accomodation.setType("hotel");
         accomodation.setName("ISS");

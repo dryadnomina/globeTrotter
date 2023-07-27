@@ -6,6 +6,7 @@ package com.sg.globeTrotter.dao;
 
 import com.sg.globeTrotter.dto.Activity;
 import com.sg.globeTrotter.dto.Trip;
+import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -73,6 +74,11 @@ public class ActivityDaoImplTest {
         trip.setTitle("Hot girl summer");
         trip.setDescription("Chillin with the girlies");
         trip.setType("beach");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(3);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(false);
 
         //add trip to db
@@ -97,6 +103,11 @@ public class ActivityDaoImplTest {
         trip.setTitle("Hot girl summer");
         trip.setDescription("Chillin with the girlies");
         trip.setType("beach");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(3);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(false);
         Trip addedTrip = tripDao.addTrip(trip);
 
@@ -124,6 +135,11 @@ public class ActivityDaoImplTest {
         trip.setTitle("Hot girl summer");
         trip.setDescription("Chillin with the girlies");
         trip.setType("beach");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(3);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(false);
         Trip addedTrip = tripDao.addTrip(trip);
 
@@ -150,6 +166,11 @@ public class ActivityDaoImplTest {
         trip.setTitle("Bummer summer");
         trip.setDescription("summertime sadness");
         trip.setType("staycation");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(3);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(true);
         Trip addedTrip = tripDao.addTrip(trip);
 
@@ -157,7 +178,6 @@ public class ActivityDaoImplTest {
         activity.setName("Netflix party");
         activity.setTrip(addedTrip);
         Activity addedActivity = activityDao.addActivity(activity);
-
 
         activityDao.deleteActivityByID(addedActivity.getId());
 
