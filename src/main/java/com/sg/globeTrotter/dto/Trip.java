@@ -4,6 +4,7 @@
  */
 package com.sg.globeTrotter.dto;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +21,24 @@ public class Trip {
     private String type;
 
     private String description;
+    private LocalDate startDate;
+    private LocalDate endDate;
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
 
     private boolean completed;
     private List<Accomodation> accomodations;
@@ -84,14 +103,16 @@ public class Trip {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 47 * hash + this.id;
-        hash = 47 * hash + Objects.hashCode(this.title);
-        hash = 47 * hash + Objects.hashCode(this.type);
-        hash = 47 * hash + Objects.hashCode(this.description);
-        hash = 47 * hash + (this.completed ? 1 : 0);
-        hash = 47 * hash + Objects.hashCode(this.accomodations);
-        hash = 47 * hash + Objects.hashCode(this.travellers);
+        int hash = 5;
+        hash = 17 * hash + this.id;
+        hash = 17 * hash + Objects.hashCode(this.title);
+        hash = 17 * hash + Objects.hashCode(this.type);
+        hash = 17 * hash + Objects.hashCode(this.description);
+        hash = 17 * hash + Objects.hashCode(this.startDate);
+        hash = 17 * hash + Objects.hashCode(this.endDate);
+        hash = 17 * hash + (this.completed ? 1 : 0);
+        hash = 17 * hash + Objects.hashCode(this.accomodations);
+        hash = 17 * hash + Objects.hashCode(this.travellers);
         return hash;
     }
 
@@ -122,10 +143,18 @@ public class Trip {
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
+        if (!Objects.equals(this.startDate, other.startDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.endDate, other.endDate)) {
+            return false;
+        }
         if (!Objects.equals(this.accomodations, other.accomodations)) {
             return false;
         }
         return Objects.equals(this.travellers, other.travellers);
     }
+
+   
 
 }

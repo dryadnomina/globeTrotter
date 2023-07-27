@@ -15,14 +15,16 @@ import org.springframework.jdbc.core.RowMapper;
  */
 public class TripMapper implements RowMapper<Trip> {
 
-        @Override
-        public Trip mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Trip trip = new Trip();
-            trip.setId(rs.getInt("tripId"));
-            trip.setTitle(rs.getString("title"));
-            trip.setDescription(rs.getString("description"));
-            trip.setCompleted(rs.getBoolean("completed"));
-            trip.setType(rs.getString("type"));
-            return trip;
-        }
+    @Override
+    public Trip mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Trip trip = new Trip();
+        trip.setId(rs.getInt("tripId"));
+        trip.setTitle(rs.getString("title"));
+        trip.setDescription(rs.getString("description"));
+        trip.setCompleted(rs.getBoolean("completed"));
+        trip.setType(rs.getString("type"));
+        trip.setStartDate(rs.getDate("startDate").toLocalDate());
+        trip.setEndDate(rs.getDate("endDate").toLocalDate());
+        return trip;
+    }
 }
