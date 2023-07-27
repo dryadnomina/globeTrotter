@@ -6,6 +6,7 @@ package com.sg.globeTrotter.dao;
 
 import com.sg.globeTrotter.dto.Traveller;
 import com.sg.globeTrotter.dto.Trip;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
@@ -65,6 +66,11 @@ public class TripDaoImplTest {
         trip.setTitle("YOLO");
         trip.setDescription("Summer BucketList");
         trip.setType("staycation");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(2);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(false);
 
         Trip addedTrip = tripDao.addTrip(trip);
@@ -80,6 +86,11 @@ public class TripDaoImplTest {
         trip.setTitle("Hot girl summer");
         trip.setDescription("Chillin with the girlies");
         trip.setType("beach");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(2);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setCompleted(false);
         Trip addedTrip1 = tripDao.addTrip(trip);
 
@@ -87,6 +98,11 @@ public class TripDaoImplTest {
         trip2.setTitle("Sweet Summer");
         trip2.setDescription("Foodies united");
         trip2.setType("culinary");
+        LocalDate dateStart2 = LocalDate.now();
+        LocalDate dateEnd2 = LocalDate.now().plusDays(3);
+
+        trip2.setStartDate(dateStart2);
+        trip2.setEndDate(dateEnd2);
         trip2.setCompleted(false);
         Trip addedTrip2 = tripDao.addTrip(trip2);
 
@@ -102,6 +118,11 @@ public class TripDaoImplTest {
         Trip trip = new Trip();
         trip.setTitle("Japan tour 202X");
         trip.setDescription("Discovering the ancient cultural wonders!");
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(2);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         trip.setType("cultural");
         trip.setCompleted(false);
         Trip addedTrip = tripDao.addTrip(trip);
@@ -125,6 +146,12 @@ public class TripDaoImplTest {
         trip.setDescription("Space the final frontier");
         trip.setType("adventure");
         trip.setCompleted(true);
+
+        LocalDate dateStart = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(2);
+
+        trip.setStartDate(dateStart);
+        trip.setEndDate(dateEnd);
         Trip addedTrip = tripDao.addTrip(trip);
 
         tripDao.deleteTripByID(addedTrip.getId());
