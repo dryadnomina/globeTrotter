@@ -21,7 +21,7 @@ public class ActivityDetailMapper implements RowMapper<ActivityDetail> {
         detail.setId(rs.getInt("detailId"));
         detail.setDescription(rs.getString("description"));
         detail.setAddress(rs.getString("address"));
-        detail.setCost(rs.getBigDecimal("cost"));
+        detail.setActivityId(rs.getInt("activityId"));
         return detail;
     }
 

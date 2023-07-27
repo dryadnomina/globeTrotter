@@ -4,15 +4,12 @@
  */
 package com.sg.globeTrotter.dto;
 
-import java.math.BigDecimal;
 import java.util.Objects;
-
 
 /**
  *
  * @author marya
  */
-
 public class ActivityDetail {
 
     private int id;
@@ -21,9 +18,15 @@ public class ActivityDetail {
 
     private String address;
 
-    private BigDecimal cost;
+    public int getActivityId() {
+        return activityId;
+    }
 
-    private Activity activity;
+    public void setActivityId(int activityId) {
+        this.activityId = activityId;
+    }
+
+    private int activityId;
 
     public int getId() {
         return id;
@@ -49,30 +52,14 @@ public class ActivityDetail {
         this.address = address;
     }
 
-    public BigDecimal getCost() {
-        return cost;
-    }
-
-    public void setCost(BigDecimal cost) {
-        this.cost = cost;
-    }
-
-    public Activity getActivity() {
-        return activity;
-    }
-
-    public void setActivity(Activity activity) {
-        this.activity = activity;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
         hash = 59 * hash + this.id;
         hash = 59 * hash + Objects.hashCode(this.description);
         hash = 59 * hash + Objects.hashCode(this.address);
-        hash = 59 * hash + Objects.hashCode(this.cost);
-        hash = 59 * hash + Objects.hashCode(this.activity);
+
+        hash = 59 * hash + this.activityId;
         return hash;
     }
 
@@ -91,16 +78,13 @@ public class ActivityDetail {
         if (this.id != other.id) {
             return false;
         }
+        if (this.activityId != other.activityId) {
+            return false;
+        }
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
-        if (!Objects.equals(this.address, other.address)) {
-            return false;
-        }
-        if (!Objects.equals(this.cost, other.cost)) {
-            return false;
-        }
-        return Objects.equals(this.activity, other.activity);
+        return Objects.equals(this.address, other.address);
     }
 
 }

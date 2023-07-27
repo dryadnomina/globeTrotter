@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
  *
  * @author marya
  */
-
 @Repository
 public class TripDaoImpl implements TripDao {
 
@@ -42,11 +41,11 @@ public class TripDaoImpl implements TripDao {
 
     @Override
     public Trip addTrip(Trip trip) {
-        
+
         final String sql = "INSERT INTO trip(title,type,description,completed) "
                 + "VALUES(?,?,?,?)";
-        System.out.println("title"+trip.getTitle()+"\ntype "+trip.getType()+"\nDesc"+ trip.getDescription()+"\nCompleted"+
-                trip.isCompleted());
+        System.out.println("title" + trip.getTitle() + "\ntype " + trip.getType() + "\nDesc" + trip.getDescription() + "\nCompleted"
+                + trip.isCompleted());
 
         jdbc.update(sql,
                 trip.getTitle(),
@@ -72,8 +71,12 @@ public class TripDaoImpl implements TripDao {
 
     @Override
     public void deleteTripByID(int id) {
-        final String sql = "DELETE FROM trip WHERE tripId = ?";
-        jdbc.update(sql, id);
+        final String sql1 = "DELETE FROM activity WHERE tripId = ?";
+        final String sql2 = "DELETE FROM accomodation WHERE tripId = ?";
+        final String sql3 = "DELETE FROM trip WHERE tripId = ?";
+        jdbc.update(sql1, id);
+        jdbc.update(sql2, id);
+        jdbc.update(sql3, id);
     }
 
 }

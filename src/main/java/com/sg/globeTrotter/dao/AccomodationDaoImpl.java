@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository;
  *
  * @author marya
  */
-
 @Repository
 public class AccomodationDaoImpl implements AccomodationDao {
 
@@ -37,14 +36,14 @@ public class AccomodationDaoImpl implements AccomodationDao {
 
     @Override
     public List<Accomodation> getAllAccomodations() {
-        String sql = "SELECT * FROM accomodation;";
+        String sql = "SELECT * FROM accomodation";
         return jdbc.query(sql, new AccomodationMapper());
     }
 
     @Override
     public Accomodation addAccomodation(Accomodation accomodation) {
         final String sql = "INSERT INTO accomodation (name, type,description,tripId) "
-                + "VALUES(?,?,?)";
+                + "VALUES(?,?,?,?)";
 
         Trip trip = accomodation.getTrip();
 
@@ -52,8 +51,7 @@ public class AccomodationDaoImpl implements AccomodationDao {
                 accomodation.getName(),
                 accomodation.getType(),
                 accomodation.getDescription(),
-                trip.getId(),
-                accomodation.getId()
+                trip.getId()
         );
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);

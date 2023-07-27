@@ -27,7 +27,8 @@ public class ActivityDetailDaoImpl implements ActivityDetailDao {
         try {
 
             String sql = "SELECT * FROM detail WHERE detailId = ?";
-            return jdbc.queryForObject(sql, new ActivityDetailMapper(), id);
+            ActivityDetail detail = jdbc.queryForObject(sql, new ActivityDetailMapper(), id);
+            return detail;
         } catch (DataAccessException ex) {
             return null;
         }
@@ -35,32 +36,36 @@ public class ActivityDetailDaoImpl implements ActivityDetailDao {
 
     @Override
     public List<ActivityDetail> getAllActivityDetails() {
-        String sql = "SELECT * FROM detail;";
-        return jdbc.query(sql, new ActivityDetailMapper());
+        String sql = "SELECT * FROM detail";
+
+        List<ActivityDetail> details = jdbc.query(sql, new ActivityDetailMapper());
+
+        return details;
     }
 
     @Override
     public ActivityDetail addActivityDetail(ActivityDetail detail) {
-        final String sql = "INSERT INTO detail (address,cost,description) "
-                + "VALUES(?,?,?,?,?)";
+        final String sql = "INSERT INTO detail (description,address,activityId) "
+                + "VALUES(?,?,?)";
 
         jdbc.update(sql,
+                detail.getDescription(),
                 detail.getAddress(),
-                detail.getCost(),
-                detail.getDescription()
+                detail.getActivityId()
         );
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+
         detail.setId(newId);
         return detail;
     }
 
     @Override
     public void updateActivityDetail(ActivityDetail detail) {
-        String sql = "UPDATE detail SET address = ?,description = ?,cost = ? WHERE detailId = ?";
+        String sql = "UPDATE detail SET address = ?,description = ?,activityId = ? WHERE detailId = ?";
         jdbc.update(sql, detail.getAddress(),
                 detail.getDescription(),
-                detail.getCost(),
+                detail.getActivityId(),
                 detail.getId());
     }
 
