@@ -7,6 +7,8 @@ package com.sg.globeTrotter.dto;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -15,14 +17,23 @@ import java.util.Objects;
 public class Trip {
 
     private int id;
-
+    @NotNull
+    @Size(max = 100, message = "Title must be fewer than 100 characters")
     private String title;
-
+    @NotNull
     private String type;
-
+    @Size(max = 255, message = "Description must be fewer than 255 characters")
     private String description;
+    @NotNull
     private LocalDate startDate;
+    @NotNull
     private LocalDate endDate;
+
+    @NotNull
+    private boolean completed;
+    private List<Accomodation> accomodations;
+
+    private List<Traveller> travellers;
 
     public LocalDate getStartDate() {
         return startDate;
@@ -39,11 +50,6 @@ public class Trip {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-
-    private boolean completed;
-    private List<Accomodation> accomodations;
-
-    private List<Traveller> travellers;
 
     public List<Traveller> getTravellers() {
         return travellers;
@@ -154,7 +160,5 @@ public class Trip {
         }
         return Objects.equals(this.travellers, other.travellers);
     }
-
-   
 
 }
