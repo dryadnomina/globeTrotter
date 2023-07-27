@@ -51,10 +51,18 @@ public class TravellerDaoImpl implements TravellerDao {
                 traveller.getPhoneNumber(),
                 traveller.getCity(),
                 traveller.getPostalCode());
+        
+        
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         traveller.setId(newId);
         return traveller;
+    }
+    
+    public void addTravellerToTrip(int id, int tripId){
+      String sql = "INSERT INTO tripTraveller (travellerId,tripId) VALUES (?,?)";
+        jdbc.update(sql, id,tripId);
+    
     }
 
     @Override

@@ -21,6 +21,7 @@ public interface TravellerDao {
 
     void updateTraveller(Traveller traveller);
 
+    void addTravellerToTrip(int id, int tripId);
+
     void deleteTravellerByID(int id);
 }
-
