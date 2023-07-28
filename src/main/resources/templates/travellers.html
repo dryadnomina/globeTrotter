@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <title>Travellers</title>
+    </head>
+    <body>
+        <div class="container" xmlns:th="http://www.w3.org/1999/xhtml">
+            <div class="row m-4">
+                <div class="col text-center border border-dark">
+                    <h1><a href="/" class="text-dark">GlobeTrotter</a></h1>
+                </div>
+            </div>
+            <div class="row m-4 border border-dark">
+
+                <div class="col text-center m-3">
+                    <a href="trips" class="btn btn-outline-primary btn-lg">Travellers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="travellers" class="btn btn-outline-primary btn-lg">Travellers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="accomodations" class="btn btn-outline-primary btn-lg">Accomodations</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="activities" class="btn btn-outline-primary btn-lg">Activities</a>
+                </div>
+            </div>
+
+            <div class="row m-4 border border-dark">
+
+                <div class="col-12 m-1 text-center"
+                     th:if="${!errors.isEmpty()}">
+                    <p class="alert alert-danger" th:each="error : ${errors}"
+                       th:text="${error.message}">Error message</p>
+                </div>
+
+                <div class="col-3 text-center m-3">
+                    <span class="h3">Add Traveller</span>
+                </div>
+                <div class="col-7 text-center m-3">
+                    <form action="addTraveller" method="POST">
+                        <div class="form-group row">
+                            <label for="firstName" class="col-3 col-form-label">
+                                First Name</label>
+                            <div class="col-9">
+                                <input type="text" name="firstName"
+                                       id="firstName" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="lastName" class="col-3 col-form-label">
+                                Last Name</label>
+                            <div class="col-9">
+                                <input type="text" name="lastName"
+                                       id="lastName" class="form-control"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="phoneNumber" class="col-3 col-form-label">
+                                Phone Number</label>
+                            <div class="col-9">
+                                <input type="text" name="phoneNumber"
+                                       id="phoneNumber" class="form-control" />
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="city" class="col-3 col-form-label">
+                                City</label>
+                            <div class="col-9">
+                                <input type="text" name="city"
+                                       id="city" class="form-control" />
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="postalCode" class="col-3 col-form-label">
+                                Postal Code</label>
+                            <div class="col-9">
+                                <input type="text" name="postalCode"
+                                       id="postalCode" class="form-control" />
+                            </div>
+
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Add Traveller</button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="row m-4 border border-dark">
+
+                <div class="col text-center m-3">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Phone Number</th>
+                                <th>City</th>
+                                <th>Postal Code</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="traveller : ${travellers}">
+                                <td th:text="${traveller.id}">ID</td>
+                                <td th:text="${traveller.firstName}">First Name</td>
+                                <td th:text="${traveller.lastName}">Last Name</td>
+                                <td th:text="${traveller.phoneNumber}"> Phone</td>
+                                <td th:text="${traveller.city}">City</td>
+                                <td th:text="${traveller.postalCode}">Postal Code</td>
+                                <td><a href="#" th:href="@{/editTraveller(id=${traveller.id})}">Edit</a></td>
+                                <td><a href="#" th:href="@{/deleteTraveller(id=${traveller.id})}">Delete</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
