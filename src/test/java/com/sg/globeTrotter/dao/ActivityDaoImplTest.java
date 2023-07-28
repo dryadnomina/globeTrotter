@@ -87,7 +87,7 @@ public class ActivityDaoImplTest {
         //create new activity and add trip to activity
         Activity activity = new Activity();
         activity.setName("Meetup at gare centrale");
-        activity.setTrip(addedTrip);
+        activity.setTripId(addedTrip.getId());
 
         //add activity to db
         Activity added = activityDao.addActivity(activity);
@@ -113,12 +113,12 @@ public class ActivityDaoImplTest {
 
         Activity activity = new Activity();
         activity.setName("Get ice cream at the Pier");
-        activity.setTrip(addedTrip);
+        activity.setTripId(addedTrip.getId());
         Activity addedActivity1 = activityDao.addActivity(activity);
 
         Activity activity2 = new Activity();
         activity2.setName("Surf on the beach");
-        activity2.setTrip(addedTrip);
+        activity2.setTripId(addedTrip.getId());
         Activity addedActivity2 = activityDao.addActivity(activity2);
 
         List<Activity> activities = activityDao.getAllActivities();
@@ -145,7 +145,7 @@ public class ActivityDaoImplTest {
 
         Activity activity = new Activity();
         activity.setName("Brunch and mimosa party on queen Street");
-        activity.setTrip(addedTrip);
+        activity.setTripId(addedTrip.getId());
         Activity addedActivity = activityDao.addActivity(activity);
 
         Activity fromDao = activityDao.getActivityByID(addedActivity.getId());
@@ -176,7 +176,7 @@ public class ActivityDaoImplTest {
 
         Activity activity = new Activity();
         activity.setName("Netflix party");
-        activity.setTrip(addedTrip);
+        activity.setTripId(addedTrip.getId());
         Activity addedActivity = activityDao.addActivity(activity);
 
         activityDao.deleteActivityByID(addedActivity.getId());

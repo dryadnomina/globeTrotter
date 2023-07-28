@@ -95,7 +95,7 @@ public class ActivityDetailDaoImplTest {
         //create new activity
         Activity activity = new Activity();
         activity.setName("Meetup at gare centrale");
-        activity.setTrip(addedTrip);
+        activity.setTripId(addedTrip.getId());
         //add activity to db
         Activity addedActivity = activityDao.addActivity(activity);
 
@@ -129,7 +129,7 @@ public class ActivityDetailDaoImplTest {
 
         Activity activity = new Activity();
         activity.setName("Netflix party");
-        activity.setTrip(addedTrip);
+        activity.setTripId(addedTrip.getId());
         Activity addedActivity = activityDao.addActivity(activity);
 
         ActivityDetail detail = new ActivityDetail();
@@ -168,7 +168,7 @@ public class ActivityDetailDaoImplTest {
 
         Activity activity = new Activity();
         activity.setName("Netflix party");
-        activity.setTrip(addedTrip);
+        activity.setTripId(addedTrip.getId());
         Activity addedActivity = activityDao.addActivity(activity);
 
         ActivityDetail detail = new ActivityDetail();
@@ -205,7 +205,7 @@ public class ActivityDetailDaoImplTest {
 
         Activity activity = new Activity();
         activity.setName("Netflix party");
-        activity.setTrip(addedTrip);
+        activity.setTripId(addedTrip.getId());
         Activity addedActivity = activityDao.addActivity(activity);
 
         ActivityDetail detail = new ActivityDetail();

@@ -20,6 +20,7 @@ public class ActivityMapper implements RowMapper<Activity> {
         Activity activity = new Activity();
         activity.setId(rs.getInt("activityId"));
         activity.setName(rs.getString("activityName"));
+        activity.setTripId(rs.getInt("tripId"));
         return activity;
     }
 

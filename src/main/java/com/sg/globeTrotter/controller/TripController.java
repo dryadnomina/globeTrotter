@@ -55,8 +55,7 @@ public class TripController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         trip.setStartDate(LocalDate.parse(startDate,formatter));
         trip.setEndDate(LocalDate.parse(endDate,formatter));
-        System.out.println("startDate" + startDate);
-        System.out.println("end Date" + endDate);
+      
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(trip);
         if (violations.isEmpty()) {

@@ -33,7 +33,7 @@ public class ActivityDaoImpl implements ActivityDao {
             String sql = "SELECT * FROM activity WHERE activityId = ?";
             Activity activity = jdbc.queryForObject(sql, new ActivityMapper(), id);
 
-            activity.setTrip(setTripForActivity(activity));
+           
 
             return activity;
 
@@ -42,36 +42,33 @@ public class ActivityDaoImpl implements ActivityDao {
         }
     }
 
-    private Trip setTripForActivity(Activity activity) {
-        try {
-            String sql = "SELECT * FROM trip JOIN activity ON activity.tripId = trip.tripId WHERE activity.activityId = ?";
-            Trip trip = jdbc.queryForObject(sql, new TripMapper(), activity.getId());
-            return trip;
-        } catch (DataAccessException e) {
-            return null;
-        }
-    }
+//    private Trip setTripForActivity(Activity activity) {
+//        try {
+//            String sql = "SELECT * FROM trip JOIN activity ON activity.tripId = trip.tripId WHERE activity.activityId = ?";
+//            Trip trip = jdbc.queryForObject(sql, new TripMapper(), activity.getId());
+//            return trip;
+//        } catch (DataAccessException e) {
+//            return null;
+//        }
+//    }
 
     @Override
     public List<Activity> getAllActivities() {
         String sql = "SELECT * FROM activity";
         List<Activity> activities = jdbc.query(sql, new ActivityMapper());
 
-        activities.forEach((Activity activity) -> {
-            activity.setTrip(setTripForActivity(activity));
-        });
+       
         return activities;
     }
 
     @Override
     public Activity addActivity(Activity activity) {
-        final String sql = "INSERT INTO activity (activityName, tripId) "
-                + "VALUES(?,?)";
+        final String sql = "INSERT INTO activity (activityName, tripId) VALUES(?,?)";
 
-        int tripId = activity.getTrip().getId();
+        
         jdbc.update(sql,
                 activity.getName(),
-                tripId);
+                activity.getTripId());
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         activity.setId(newId);

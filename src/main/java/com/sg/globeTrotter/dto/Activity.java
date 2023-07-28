@@ -5,6 +5,7 @@
 package com.sg.globeTrotter.dto;
 
 import java.util.Objects;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -15,26 +16,26 @@ import javax.validation.constraints.Size;
 public class Activity {
 
     private int id;
-    @NotNull
-    private Trip trip;
-    @NotNull
-    @Size(max = 100, message = "Name must be fewer than 100 characters")
+    private int tripId;
+    @NotBlank(message = " Activity Name cannot be blank")
+    @Size(max = 100, message = "Activity Name must be fewer than 100 characters")
     private String name;
+    private Trip trip;
+    public int getTripId() {
+        return tripId;
+    }
 
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
+    }
+
+   
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Trip getTrip() {
-        return trip;
-    }
-
-    public void setTrip(Trip trip) {
-        this.trip = trip;
     }
 
     public String getName() {
@@ -44,13 +45,13 @@ public class Activity {
     public void setName(String name) {
         this.name = name;
     }
-
-    @Override
+    
+     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + this.id;
-        hash = 59 * hash + Objects.hashCode(this.trip);
-        hash = 59 * hash + Objects.hashCode(this.name);
+        int hash = 3;
+        hash = 89 * hash + this.id;
+        hash = 89 * hash + this.tripId;
+        hash = 89 * hash + Objects.hashCode(this.name);
         return hash;
     }
 
@@ -69,10 +70,11 @@ public class Activity {
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.name, other.name)) {
+        if (this.tripId != other.tripId) {
             return false;
         }
-        return Objects.equals(this.trip, other.trip);
+        return Objects.equals(this.name, other.name);
     }
+
 
 }
