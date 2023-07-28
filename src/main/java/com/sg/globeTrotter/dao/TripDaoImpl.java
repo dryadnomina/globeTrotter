@@ -42,8 +42,7 @@ public class TripDaoImpl implements TripDao {
     @Override
     public Trip addTrip(Trip trip) {
 
-        final String sql = "INSERT INTO trip(title,type,description,startDate,endDate,completed) "
-                + "VALUES(?,?,?,?,?,?)";
+        final String sql = "INSERT INTO trip(title,type,description,startDate,endDate,completed) VALUES (?,?,?,?,?,?)";
 
         jdbc.update(sql,
                 trip.getTitle(),

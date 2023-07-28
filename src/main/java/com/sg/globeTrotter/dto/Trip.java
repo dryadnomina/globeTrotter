@@ -7,6 +7,7 @@ package com.sg.globeTrotter.dto;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,7 +18,7 @@ import javax.validation.constraints.Size;
 public class Trip {
 
     private int id;
-    @NotNull
+    @NotBlank
     @Size(max = 100, message = "Title must be fewer than 100 characters")
     private String title;
     @NotNull

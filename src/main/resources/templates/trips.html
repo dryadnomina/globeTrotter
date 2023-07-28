@@ -19,16 +19,16 @@
             <div class="row m-4 border border-dark">
 
                 <div class="col text-center m-3">
-                    <a href="heroes" class="btn btn-outline-primary btn-lg">Trips</a>
+                    <a href="trips" class="btn btn-outline-primary btn-lg">Trips</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="powers" class="btn btn-outline-primary btn-lg">Travellers</a>
+                    <a href="travellers" class="btn btn-outline-primary btn-lg">Travellers</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="locations" class="btn btn-outline-primary btn-lg">Accomodations</a>
+                    <a href="accomodations" class="btn btn-outline-primary btn-lg">Accomodations</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="organizations" class="btn btn-outline-primary btn-lg">Activities</a>
+                    <a href="activities" class="btn btn-outline-primary btn-lg">Activities</a>
                 </div>
             </div>
 
@@ -46,7 +46,7 @@
                 <div class="col-7 text-center m-3">
                     <form action="addTrip" method="POST">
                         <div class="form-group row">
-                            <label for="name" class="col-3 col-form-label">
+                            <label for="title" class="col-3 col-form-label">
                                 Title</label>
                             <div class="col-9">
                                 <input type="text" name="title"
@@ -55,10 +55,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Description" class="col-3 col-form-label">
+                            <label for="description" class="col-3 col-form-label">
                                 Description</label>
                             <div class="col-9">
-                                <input type="text" name="Description"
+                                <input type="text" name="description"
                                        id="Description" class="form-control"/>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                                 Start Date</label>
                             <div class="col-9">
                                 <input type="date" name="startDate"
-                                       id="startDate" class="form-control"/>
+                                       id="startDate" class="form-control"  min="1900-01-01" max="2100-12-31"/>
                             </div>
 
                         </div>
@@ -90,14 +90,14 @@
                                 End Date</label>
                             <div class="col-9">
                                 <input type="date" name="endDate"
-                                       id="endDate" class="form-control"/>
+                                       id="endDate" class="form-control" min="1900-01-01" max="2100-12-31"/>
                             </div>
 
                         </div>
                         <div class="form-group row">
 
                             <div class="col-9">
-                                <input type="checkbox" id="completed" name="completed" value="completed">
+                                <input type="checkbox" id="completed" name="completed">
                                 <label for="completed">Completed?</label><br>
                             </div>
                         </div>
@@ -142,3 +142,5 @@
                 </div>
             </div>
         </div>
+    </body>
+</html>
