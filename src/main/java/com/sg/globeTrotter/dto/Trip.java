@@ -7,8 +7,10 @@ package com.sg.globeTrotter.dto;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
 /**
@@ -26,8 +28,10 @@ public class Trip {
     @Size(max = 255, message = "Description must be fewer than 255 characters")
     private String description;
     @NotNull
+    @PastOrPresent(message = "Start date must be in the past or in the present")
     private LocalDate startDate;
     @NotNull
+    @FutureOrPresent(message = "End date must be in the present or in the future")
     private LocalDate endDate;
 
     @NotNull

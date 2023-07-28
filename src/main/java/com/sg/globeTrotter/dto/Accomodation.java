@@ -5,19 +5,26 @@
 package com.sg.globeTrotter.dto;
 
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author marya
  */
-
 public class Accomodation {
 
     private int id;
+    @NotNull
+    @Size(max = 100, message = "Name must be fewer than 100 characters")
 
     private String name;
+    @NotNull
     private String type;
+    
+    @Size(max = 255, message = "Description must be fewer than 100 characters")
     private String description;
+    @NotNull
     private Trip trip;
 
     public int getId() {

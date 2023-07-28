@@ -53,7 +53,8 @@ public class GlobeTrotterServiceImpl implements GlobeTrotterService {
     }
 
     @Override
-    public Trip addTrip(Trip trip) {
+    public Trip addTrip(Trip trip) {    
+        
         return tripDao.addTrip(trip);
     }
 
@@ -75,7 +76,7 @@ public class GlobeTrotterServiceImpl implements GlobeTrotterService {
 
     @Override
     public List<Traveller> getAllTravellers() {
-       return travellerDao.getAllTravellers();
+        return travellerDao.getAllTravellers();
     }
 
     @Override

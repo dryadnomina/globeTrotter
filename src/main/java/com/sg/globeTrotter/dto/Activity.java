@@ -5,6 +5,8 @@
 package com.sg.globeTrotter.dto;
 
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -13,9 +15,10 @@ import java.util.Objects;
 public class Activity {
 
     private int id;
-
+    @NotNull
     private Trip trip;
-
+    @NotNull
+    @Size(max = 100, message = "Name must be fewer than 100 characters")
     private String name;
 
     public int getId() {

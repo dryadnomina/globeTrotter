@@ -6,6 +6,8 @@ package com.sg.globeTrotter.dto;
 
 import java.util.List;
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -14,15 +16,18 @@ import java.util.Objects;
 public class Traveller {
 
     private int id;
-
+    @NotNull
+    @Size(max = 50, message = "First name must be fewer than 50 characters")
     private String firstName;
-
+    
+    @NotNull
+    @Size(max = 50, message = "Last name must be fewer than 50 characters")
     private String lastName;
 
     private String postalCode;
 
     private String City;
-
+    @NotNull
     private String phoneNumber;
 
     private List<Trip> trips;

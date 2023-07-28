@@ -5,6 +5,8 @@
 package com.sg.globeTrotter.dto;
 
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -13,19 +15,13 @@ import java.util.Objects;
 public class ActivityDetail {
 
     private int id;
-
+    @Size(max = 255, message = "Description must be fewer than 100 characters")
     private String description;
-
+    @NotNull
+    @Size(max = 150, message = "Address must be fewer than 150 characters")
     private String address;
 
-    public int getActivityId() {
-        return activityId;
-    }
-
-    public void setActivityId(int activityId) {
-        this.activityId = activityId;
-    }
-
+    @NotNull
     private int activityId;
 
     public int getId() {
@@ -50,6 +46,14 @@ public class ActivityDetail {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public int getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(int activityId) {
+        this.activityId = activityId;
     }
 
     @Override
