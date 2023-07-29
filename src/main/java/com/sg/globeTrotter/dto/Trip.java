@@ -28,7 +28,7 @@ public class Trip {
     @Size(max = 255, message = "Description must be fewer than 255 characters")
     private String description;
     @NotNull
-    @PastOrPresent(message = "Start date must be in the past or in the present")
+    @FutureOrPresent(message = "Start date must be in the future or in the present")
     private LocalDate startDate;
     @NotNull
     @FutureOrPresent(message = "End date must be in the present or in the future")

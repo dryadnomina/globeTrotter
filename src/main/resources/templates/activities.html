@@ -39,25 +39,46 @@
                     <p class="alert alert-danger" th:each="error : ${errors}"
                        th:text="${error.message}">Error message</p>
                 </div>
-
+               
                 <div class="col-3 text-center m-3">
                     <span class="h3">Add Activity</span>
                 </div>
                 <div class="col-7 text-center m-3">
+                    <div th:if="${trips !=null and !trips.empty}">
                     <form action="addActivity" method="POST">
                         <div class="form-group row">
-                            <label for="activityName" class="col-3 col-form-label">
+                            <label for="name" class="col-3 col-form-label">
                                 Activity Name</label>
                             <div class="col-9">
-                                <input type="text" name="activityName"
-                                       id="activityName"
-                                       th:value="${activity.name}"
+                                <input type="text" name="name"
+                                       id="name"
+                                       
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="address" class="col-3 col-form-label">
+                                Address</label>
+                            <div class="col-9">
+                                <input type="text" name="address"
+                                       id="address"
+                                       
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="description" class="col-3 col-form-label">
+                               description </label>
+                            <div class="col-9">
+                                <input type="text" name="description"
+                                       id="description"
+                                       
                                        class="form-control"/>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="tripId" class="col-3 col-form-label">
+                            <label for="trip" class="col-3 col-form-label">
                                 Trip</label>
                             <div class="col-9">
                                 <select id="tripId" name="tripId" class="form-control" >
@@ -72,6 +93,8 @@
 
                         <button type="submit" class="btn btn-primary">Add Activity</button>
                     </form>
+                     </div>
+                    <div th:unless="${trips != null and !trips.empty}">Add you First Trip!</div>
                 </div>
 
             </div>
@@ -83,7 +106,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Activity Name</th>
-                                <th>Trip ID</th>
+                                <th>Trip Name</th>
+                                <th>Detail</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -93,10 +117,10 @@
                                 <td th:text="${activity.id}">ID</td>
                                 <td th:text="${activity.name}">Activity Name</td>
 
-                                <td th:text="${activity.tripId}">tripId</td>
-                          
-                                <td><a href="#" th:href="@{/editTrip(id=${activity.id})}">Edit</a></td>
-                                <td><a href="#" th:href="@{/deleteTrip(id=${activity.id})}">Delete</a></td>
+                                <td th:text="${activity.trip.title}">Trip</td>
+                                <td><a href="#" th:href="@{/activityDetail(id=${activity.id})}">Detail</a></td>
+                                <td><a href="#" th:href="@{/editActivity(id=${activity.id})}">Edit</a></td>
+                                <td><a href="#" th:href="@{/deleteActivity(id=${activity.id})}">Delete</a></td>
                             </tr>
                         </tbody>
                     </table>
