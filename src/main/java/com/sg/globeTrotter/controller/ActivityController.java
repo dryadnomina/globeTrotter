@@ -40,15 +40,15 @@ public class ActivityController {
         model.addAttribute("activities", activities);
         model.addAttribute("trips", trips);
         model.addAttribute("errors", violations);
-        model.addAttribute("activity", new Activity());
+//        model.addAttribute("activity", new Activity());
         return "activities";
     }
 
     @PostMapping("addActivity")
-    public String addActivity(HttpServletRequest request) {
-        Activity activity =new Activity();
-        activity.setName(request.getParameter("activityName"));
-        activity.setTripId(Integer.parseInt(request.getParameter("tripId")));
+    public String addActivity( Activity activity, HttpServletRequest request) {
+//        Activity activity =new Activity();
+//        activity.setName(request.getParameter("activityName"));
+//        activity.setTrip(request.getParameter("trip"));
         
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(activity);

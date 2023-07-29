@@ -6,7 +6,7 @@ package com.sg.globeTrotter.service;
 
 import com.sg.globeTrotter.dto.Accomodation;
 import com.sg.globeTrotter.dto.Activity;
-import com.sg.globeTrotter.dto.ActivityDetail;
+import com.sg.globeTrotter.dto.Budget;
 import com.sg.globeTrotter.dto.Traveller;
 import com.sg.globeTrotter.dto.Trip;
 import java.util.List;
@@ -53,15 +53,15 @@ public interface GlobeTrotterService {
     void deleteActivityByID(int id);
 
 //Activity detail
-    ActivityDetail getActivityDetailByID(int id);
+    Budget getBudgetByID(int id);
 
-    List<ActivityDetail> getAllActivityDetails();
+    List<Budget> getAllBudgets();
 
-    ActivityDetail addActivityDetail(ActivityDetail detail);
+    Budget addBudget(Budget detail);
 
-    void updateActivityDetail(ActivityDetail detail);
+    void updateBudget(Budget detail);
 
-    void deleteActivityDetailByID(int id);
+    void deleteBudgetByID(int id);
 
     //Accomodation
     Accomodation getAccomodationByID(int id);
