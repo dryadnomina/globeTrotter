@@ -79,7 +79,9 @@ public class ActivityController {
     @GetMapping("editActivity")
     public String editActivity(Integer id, Model model) {
         Activity activity = service.getActivityByID(id);
+          List<Trip> trips = service.getAllTrips();
         model.addAttribute("activity", activity);
+            model.addAttribute("trips", trips);
         return "editActivity";
     }
 

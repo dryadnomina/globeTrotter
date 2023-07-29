@@ -78,13 +78,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="trip" class="col-3 col-form-label">
+                            <label for="tripId" class="col-3 col-form-label">
                                 Trip</label>
                             <div class="col-9">
-                                <select id="tripId" name="tripId" class="form-control" >
+                                <select id="tripUd" name="tripId" class="form-control" >
                                     <option th:each="trip : ${trips}"
                                             th:value="${trip.id}"
-                                            th:text="${trip.Title}">
+                                            th:text="${trip.title}">
                                         Trip Name
                                     </option>
                                 </select>
