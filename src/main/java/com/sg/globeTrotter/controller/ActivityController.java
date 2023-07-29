@@ -52,10 +52,7 @@ public class ActivityController {
         Trip trip = service.getTripByID(tripId);
         activity.setTrip(trip);
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
-        System.out.println("name " + activity.getName());
-        System.out.println("desc "+ activity.getDescription());
-        System.out.println("address" + activity.getAddress());
-        violations = validate.validate(activity);
+      
         if (violations.isEmpty()) {
             service.addActivity(activity);
 
@@ -99,57 +96,5 @@ public class ActivityController {
         return "redirect:/activities";
     }
 
-//    @GetMapping("activities")
-//    public String displayActivitiesAndActivities(Model model) {
-//        List<Activity> activities = service.getAllActivities();
-//        List<Activity> activities = service.getAllActivities();
-//        model.addAttribute("activities", activities);
-//        model.addAttribute("activities", activities);
-//        model.addAttribute("errors", violations);
-////        model.addAttribute("activity", new Activity());
-//        return "activities";
-//    }
-//
-//    @PostMapping("addActivity")
-//    public String addActivity( Activity activity, HttpServletRequest request) {
-////        Activity activity =new Activity();
-////        activity.setName(request.getParameter("activityName"));
-////        activity.setActivity(request.getParameter("activity"));
-//        
-//        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
-//        violations = validate.validate(activity);
-//      
-//    
-//        if (violations.isEmpty()) {
-//            service.addActivity(activity);
-//
-//        }
-//        return "redirect:/activities";
-//    }
-//
-//    @GetMapping("deleteActivity")
-//    public String deleteActivity(Integer id) {
-//        service.deleteActivityByID(id);
-//        return "redirect:/activities";
-//    }
-//
-//    @GetMapping("editActivity")
-//    public String editActivity(Integer id, Model model) {
-//        Activity activity = service.getActivityByID(id);
-//        model.addAttribute("activity", activity);
-//        return "editActivity";
-//    }
-//
-//    @PostMapping("editActivity")
-//    public String performEditActivity(@Valid Activity activity, BindingResult result, HttpServletRequest request, Model model) {
-//
-//        if (result.hasErrors()) {
-//            model.addAttribute("activity", activity);
-//            return "editActivity";
-//        }
-//
-//        service.updateActivity(activity);
-//
-//        return "redirect:/activities";
-//    }
+
 }

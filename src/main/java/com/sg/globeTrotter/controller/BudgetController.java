@@ -8,6 +8,6 @@ package com.sg.globeTrotter.controller;
  *
  * @author marya
  */
-public class ActivityDetailController {
+public class BudgetController {
     
 }

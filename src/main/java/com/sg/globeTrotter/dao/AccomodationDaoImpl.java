@@ -7,6 +7,7 @@ package com.sg.globeTrotter.dao;
 import com.sg.globeTrotter.dto.Accomodation;
 import com.sg.globeTrotter.dto.Trip;
 import com.sg.globeTrotter.mappers.AccomodationMapper;
+import com.sg.globeTrotter.mappers.TripMapper;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -28,8 +29,21 @@ public class AccomodationDaoImpl implements AccomodationDao {
         try {
 
             String sql = "SELECT * FROM accomodation WHERE accomodationId = ?";
-            return jdbc.queryForObject(sql, new AccomodationMapper(), id);
+            Accomodation accomodation = jdbc.queryForObject(sql, new AccomodationMapper(), id);
+            Trip trip = setTripForAccomodation(accomodation);
+            accomodation.setTrip(trip);
+            return accomodation;
         } catch (DataAccessException ex) {
+            return null;
+        }
+    }
+
+    private Trip setTripForAccomodation(Accomodation accomodation) {
+        try {
+            String sql = "SELECT * FROM trip JOIN accomodation ON accomodation.tripId = trip.tripId WHERE accomodation.accomodationId = ?";
+            Trip trip = jdbc.queryForObject(sql, new TripMapper(), accomodation.getId());
+            return trip;
+        } catch (DataAccessException e) {
             return null;
         }
     }
@@ -37,7 +51,14 @@ public class AccomodationDaoImpl implements AccomodationDao {
     @Override
     public List<Accomodation> getAllAccomodations() {
         String sql = "SELECT * FROM accomodation";
-        return jdbc.query(sql, new AccomodationMapper());
+        List<Accomodation> accomodations = jdbc.query(sql, new AccomodationMapper());
+
+        accomodations.forEach(accomodation -> {
+            Trip trip = setTripForAccomodation(accomodation);
+            accomodation.setTrip(trip);
+
+        });
+        return accomodations;
     }
 
     @Override
