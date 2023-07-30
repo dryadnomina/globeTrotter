@@ -16,24 +16,24 @@
                     <h1><a href="/" class="text-dark">GlobeTrotter</a></h1>
                 </div>
             </div>
-             <div class="row m-4 border border-dark">
+            <div class="row m-4 border border-dark">
 
-                    <div class="col text-center m-3">
-                        <a href="trips" class="btn btn-outline-primary btn-lg">Trips</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="travellers" class="btn btn-outline-primary btn-lg">Travellers</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="accomodations" class="btn btn-outline-primary btn-lg">Accomodations</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="activities" class="btn btn-outline-primary btn-lg">Activities</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="budgets" class="btn btn-outline-primary btn-lg">Budgets</a>
-                    </div>
+                <div class="col text-center m-3">
+                    <a href="trips" class="btn btn-outline-primary btn-lg">Trips</a>
                 </div>
+                <div class="col text-center m-3">
+                    <a href="travellers" class="btn btn-outline-primary btn-lg">Travellers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="accomodations" class="btn btn-outline-primary btn-lg">Accomodations</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="activities" class="btn btn-outline-primary btn-lg">Activities</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="budgets" class="btn btn-outline-primary btn-lg">Budgets</a>
+                </div>
+            </div>
             <div class="row m-4 border border-dark">
 
                 <div class="col-12 m-1 text-center"
@@ -96,13 +96,7 @@
                             </div>
 
                         </div>
-                        <div class="form-group row">
 
-                            <div class="col-9">
-                                <input type="checkbox" id="completed" name="completed">
-                                <label for="completed">Completed?</label><br>
-                            </div>
-                        </div>
 
 
                         <button type="submit" class="btn btn-primary">Add Trip</button>
@@ -136,7 +130,7 @@
                                 <td th:text="${trip.type}">Type</td>
                                 <td th:text="${trip.description}"> Description</td>
                                 <td th:text="${trip.completed}"> Completed</td>
-                               <td><a href="#" th:href="@{/editTrip(id=${trip.id})}">Edit</a></td>
+                                <td><a href="#" th:href="@{/editTrip(id=${trip.id})}">Edit</a></td>
                                 <td><a href="#" th:href="@{/deleteTrip(id=${trip.id})}">Delete</a></td>
                             </tr>
                         </tbody>

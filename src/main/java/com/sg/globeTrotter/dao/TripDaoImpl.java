@@ -42,15 +42,15 @@ public class TripDaoImpl implements TripDao {
     @Override
     public Trip addTrip(Trip trip) {
 
-        final String sql = "INSERT INTO trip(title,type,description,startDate,endDate,completed) VALUES (?,?,?,?,?,?)";
+        final String sql = "INSERT INTO trip(title,type,description,startDate,endDate) VALUES (?,?,?,?,?)";
 
         jdbc.update(sql,
                 trip.getTitle(),
                 trip.getType(),
                 trip.getDescription(),
                 trip.getStartDate(),
-                trip.getEndDate(),
-                trip.isCompleted());
+                trip.getEndDate()
+                );
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         trip.setId(newId);
@@ -60,11 +60,10 @@ public class TripDaoImpl implements TripDao {
 
     @Override
     public void updateTrip(Trip trip) {
-        String sql = "UPDATE trip SET title = ?,type = ?,description = ?, completed = ?, startDate = ?,endDate = ?  WHERE tripId = ?";
+        String sql = "UPDATE trip SET title = ?,type = ?,description = ?, startDate = ?,endDate = ?  WHERE tripId = ?";
         jdbc.update(sql, trip.getTitle(),
                 trip.getType(),
                 trip.getDescription(),
-                trip.isCompleted(),
                 trip.getStartDate(),
                 trip.getEndDate(),
                 trip.getId());
