@@ -5,6 +5,7 @@
 package com.sg.globeTrotter.dto;
 
 import java.util.Objects;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -15,16 +16,26 @@ import javax.validation.constraints.Size;
 public class Accomodation {
 
     private int id;
-    @NotNull
-    @Size(max = 100, message = "Name must be fewer than 100 characters")
 
+    @NotBlank(message = "Name cannot be null!")
+    @Size(max = 100, message = "Name must be fewer than 100 characters")
     private String name;
-    @NotNull
+
+    @NotNull(message = "Type cannot be null!")
     private String type;
-    
+
     @Size(max = 255, message = "Description must be fewer than 100 characters")
     private String description;
-    @NotNull
+    @NotNull(message = "trip cannot be null")
+    private int tripId;
+
+    public int getTripId() {
+        return tripId;
+    }
+
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
+    }
     private Trip trip;
 
     public int getId() {

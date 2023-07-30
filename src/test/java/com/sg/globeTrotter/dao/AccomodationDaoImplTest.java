@@ -137,6 +137,7 @@ public class AccomodationDaoImplTest {
 
         Accomodation accomodation = new Accomodation();
         accomodation.setTrip(addedTrip);
+         accomodation.setTripId(addedTrip.getId());
         accomodation.setType("airbnb");
         accomodation.setName("Kyoto hotel");
         accomodation.setDescription("checking in early");

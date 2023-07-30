@@ -47,12 +47,12 @@ public class ActivityController {
 
     @PostMapping("addActivity")
     public String addActivity(Activity activity, HttpServletRequest request) {
-        
+
         int tripId = Integer.parseInt(request.getParameter("tripId"));
         Trip trip = service.getTripByID(tripId);
         activity.setTrip(trip);
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
-      
+
         if (violations.isEmpty()) {
             service.addActivity(activity);
 
@@ -65,20 +65,20 @@ public class ActivityController {
         service.deleteActivityByID(id);
         return "redirect:/activities";
     }
-    
-     @GetMapping("activityDetail")
+
+    @GetMapping("activityDetail")
     public String displayActivityByID(Integer id, Model model) {
-       Activity activity = service.getActivityByID(id);
-       model.addAttribute("activity", activity);
+        Activity activity = service.getActivityByID(id);
+        model.addAttribute("activity", activity);
         return "activityDetail";
     }
 
     @GetMapping("editActivity")
     public String editActivity(Integer id, Model model) {
         Activity activity = service.getActivityByID(id);
-          List<Trip> trips = service.getAllTrips();
+        List<Trip> trips = service.getAllTrips();
         model.addAttribute("activity", activity);
-            model.addAttribute("trips", trips);
+        model.addAttribute("trips", trips);
         return "editActivity";
     }
 
@@ -88,13 +88,12 @@ public class ActivityController {
         if (result.hasErrors()) {
             model.addAttribute("activity", activity);
             return "editActivity";
-        } else {
-
-            service.updateActivity(activity);
         }
 
+            service.updateActivity(activity);
+
+        
         return "redirect:/activities";
     }
-
 
 }

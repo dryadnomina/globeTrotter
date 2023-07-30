@@ -82,11 +82,13 @@ public class AccomodationDaoImpl implements AccomodationDao {
 
     @Override
     public void updateAccomodation(Accomodation accomodation) {
-        String sql = "UPDATE accomodation SET name = ?, type = ?, description = ? WHERE accomodationId = ?";
+        String sql = "UPDATE accomodation SET name = ?, type = ?, description = ? ,tripId = ? WHERE accomodationId = ?";
         jdbc.update(sql,
                 accomodation.getName(),
                 accomodation.getType(),
                 accomodation.getDescription(),
+                accomodation.getTripId(),
+//                accomodation.getTrip().getId(),
                 accomodation.getId());
     }
 
