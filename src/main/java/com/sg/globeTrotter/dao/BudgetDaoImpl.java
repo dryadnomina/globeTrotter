@@ -68,7 +68,7 @@ public class BudgetDaoImpl implements BudgetDao {
 
     @Override
     public Budget addBudget(Budget budget) {
-        final String sql = "INSERT INTO budget (accomodationCost,foodCost,transportationCost, activityCost,tripId,total) "
+        final String sql = "Insert INTO budget (accomodationCost,foodCost,transportationCost, activityCost,tripId,total) "
                 + "VALUES(?,?,?,?,?,?)";
 
         calculateBudgetTotal(budget);
