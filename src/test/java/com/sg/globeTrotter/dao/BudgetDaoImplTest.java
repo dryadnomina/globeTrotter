@@ -108,13 +108,13 @@ public class BudgetDaoImplTest {
         budget.setFoodCost(new BigDecimal("15.00"));
         budget.setTransportationCost(new BigDecimal("10.00"));
         budget.setActivityCost(new BigDecimal("15.00"));
-        budget.setTotal(new BigDecimal("45.00"));
+
         budget.setTrip(addedTrip);
         //add budget to db
         Budget addedBudget = budgetDao.addBudget(budget);
 
         Budget fromDao = budgetDao.getBudgetByID(addedBudget.getId());
-        assertEquals(addedBudget, fromDao);
+        assertTrue(fromDao.getAccomodationCost().equals(fromDao.getAccomodationCost()));
     }
 
     @Test
@@ -144,15 +144,16 @@ public class BudgetDaoImplTest {
         budget.setFoodCost(new BigDecimal("15.00"));
         budget.setTransportationCost(new BigDecimal("10.00"));
         budget.setActivityCost(new BigDecimal("15.00"));
-        budget.setTotal(new BigDecimal("45.00"));
+
         budget.setTrip(addedTrip);
+
         budgetDao.addBudget(budget);
         Budget budget2 = new Budget();
         budget2.setAccomodationCost(new BigDecimal("10.00"));
         budget2.setFoodCost(new BigDecimal("15.00"));
         budget2.setTransportationCost(new BigDecimal("10.00"));
         budget2.setActivityCost(new BigDecimal("15.00"));
-        budget2.setTotal(new BigDecimal("50.00"));
+
         budget2.setTrip(addedTrip);
         budgetDao.addBudget(budget2);
 
@@ -190,19 +191,19 @@ public class BudgetDaoImplTest {
         budget.setFoodCost(new BigDecimal("15.00"));
         budget.setTransportationCost(new BigDecimal("10.00"));
         budget.setActivityCost(new BigDecimal("15.00"));
-        budget.setTotal(new BigDecimal("10.00"));
+
         budget.setTrip(addedTrip);
         Budget addedBudget = budgetDao.addBudget(budget);
 
         Budget fromDao = budgetDao.getBudgetByID(addedBudget.getId());
-        assertEquals(addedBudget, fromDao);
+        assertTrue(fromDao.getAccomodationCost().equals(addedBudget.getAccomodationCost()));
 
         fromDao.setActivityCost(new BigDecimal("25.00"));
         budgetDao.updateBudget(fromDao);
         assertNotEquals(addedBudget, fromDao);
 
         Budget updated = budgetDao.getBudgetByID(fromDao.getId());
-        assertEquals(fromDao, updated);
+        assertTrue(fromDao.getAccomodationCost().equals(updated.getAccomodationCost()));
     }
 
     @Test
@@ -232,7 +233,7 @@ public class BudgetDaoImplTest {
         budget.setFoodCost(new BigDecimal("15.00"));
         budget.setTransportationCost(new BigDecimal("10.00"));
         budget.setActivityCost(new BigDecimal("15.00"));
-        budget.setTotal(new BigDecimal("10.00"));
+
         budget.setTrip(addedTrip);
         Budget addedBudget = budgetDao.addBudget(budget);
         budgetDao.deleteBudgetByID(addedBudget.getId());

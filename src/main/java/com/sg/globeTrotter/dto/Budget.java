@@ -6,7 +6,10 @@ package com.sg.globeTrotter.dto;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 /**
@@ -16,11 +19,26 @@ import javax.validation.constraints.Size;
 public class Budget {
 
     private int id;
+    @NotNull(message = "Food Cost cannot be null")
     private BigDecimal foodCost;
+    @NotNull(message = "Accomodation Cost cannot be null")
     private BigDecimal accomodationCost;
+    @NotNull(message = "Activity Cost cannot be null")
     private BigDecimal activityCost;
+    @NotNull(message = "Transportation Cost cannot be null")
     private BigDecimal transportationCost;
     private BigDecimal total;
+    @NotNull(message = "Trip cannot be null")
+    private int tripId;
+   
+    private Trip trip;
+    public int getTripId() {
+        return tripId;
+    }
+
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
+    }
 
     public BigDecimal getFoodCost() {
         return foodCost;
@@ -70,8 +88,7 @@ public class Budget {
         this.trip = trip;
     }
 
-    @NotNull
-    private Trip trip;
+ 
 
     public int getId() {
         return id;
@@ -81,53 +98,5 @@ public class Budget {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 11 * hash + this.id;
-        hash = 11 * hash + Objects.hashCode(this.foodCost);
-        hash = 11 * hash + Objects.hashCode(this.accomodationCost);
-        hash = 11 * hash + Objects.hashCode(this.activityCost);
-        hash = 11 * hash + Objects.hashCode(this.transportationCost);
-        hash = 11 * hash + Objects.hashCode(this.total);
-        hash = 11 * hash + Objects.hashCode(this.trip);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Budget other = (Budget) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (!Objects.equals(this.foodCost, other.foodCost)) {
-            return false;
-        }
-        if (!Objects.equals(this.accomodationCost, other.accomodationCost)) {
-            return false;
-        }
-        if (!Objects.equals(this.activityCost, other.activityCost)) {
-            return false;
-        }
-        if (!Objects.equals(this.transportationCost, other.transportationCost)) {
-            return false;
-        }
-        if (!Objects.equals(this.total, other.total)) {
-            return false;
-        }
-        return Objects.equals(this.trip, other.trip);
-    }
-
     
-  
-
 }

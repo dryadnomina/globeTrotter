@@ -9,6 +9,7 @@ import com.sg.globeTrotter.dto.Trip;
 import com.sg.globeTrotter.mappers.BudgetMapper;
 import com.sg.globeTrotter.mappers.TripMapper;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -70,13 +71,15 @@ public class BudgetDaoImpl implements BudgetDao {
         final String sql = "INSERT INTO budget (accomodationCost,foodCost,transportationCost, activityCost,tripId,total) "
                 + "VALUES(?,?,?,?,?,?)";
 
+        calculateBudgetTotal(budget);
+
         jdbc.update(sql,
-                budget.getAccomodationCost(),
-                budget.getFoodCost(),
-                budget.getTransportationCost(),
-                budget.getActivityCost(),
-               budget.getTrip().getId(),
-                budget.getTotal());
+                budget.getAccomodationCost().setScale(2, RoundingMode.HALF_UP),
+                budget.getFoodCost().setScale(2, RoundingMode.HALF_UP),
+                budget.getTransportationCost().setScale(2, RoundingMode.HALF_UP),
+                budget.getActivityCost().setScale(2, RoundingMode.HALF_UP),
+                budget.getTrip().getId(),
+                budget.getTotal().setScale(2, RoundingMode.HALF_UP));
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
 
@@ -84,18 +87,30 @@ public class BudgetDaoImpl implements BudgetDao {
         return budget;
     }
 
+    private void calculateBudgetTotal(Budget budget) {
+        BigDecimal accomodationCost = budget.getAccomodationCost();
+        BigDecimal foodCost = budget.getFoodCost();
+        BigDecimal activityCost = budget.getActivityCost();
+        BigDecimal transportationCost = budget.getTransportationCost();
+
+        BigDecimal total = accomodationCost.add(foodCost).add(activityCost).add(transportationCost);
+
+        budget.setTotal(total);
+    }
+
     @Override
     public void updateBudget(Budget budget) {
         String sql = "UPDATE budget SET accomodationCost = ?,foodCost = ?,transportationCost = ?,activityCost = ?,tripId = ?, total = ? WHERE budgetId = ?";
+        calculateBudgetTotal(budget);
         jdbc.update(sql,
-                budget.getAccomodationCost(),
-                budget.getFoodCost(),
-                budget.getTransportationCost(),
-                budget.getActivityCost(),
-                budget.getTrip().getId(),
-                budget.getTotal(),
-                budget.getId()
-        );
+                budget.getAccomodationCost().setScale(2, RoundingMode.HALF_UP),
+                budget.getFoodCost().setScale(2, RoundingMode.HALF_UP),
+                budget.getTransportationCost().setScale(2, RoundingMode.HALF_UP),
+                budget.getActivityCost().setScale(2, RoundingMode.HALF_UP),
+                budget.getTripId(),
+                budget.getTotal().setScale(2, RoundingMode.HALF_UP),
+                budget.getId());
+
     }
 
     @Override

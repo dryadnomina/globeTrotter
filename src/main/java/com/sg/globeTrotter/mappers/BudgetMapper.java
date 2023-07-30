@@ -16,11 +16,6 @@ import org.springframework.jdbc.core.RowMapper;
 public class BudgetMapper implements RowMapper<Budget> {
 
     
-//     private BigDecimal foodCost;
-//    private BigDecimal accomodationCost;
-//    private BigDecimal activityCost;
-//    private BigDecimal transportationCost;
-//    private BigDecimal total;
     @Override
     public Budget mapRow(ResultSet rs, int rowNum) throws SQLException {
         Budget budget = new Budget();
@@ -30,6 +25,7 @@ public class BudgetMapper implements RowMapper<Budget> {
         budget.setActivityCost(rs.getBigDecimal("activityCost"));
         budget.setTransportationCost(rs.getBigDecimal("transportationCost"));
         budget.setTotal(rs.getBigDecimal("total"));
+        budget.setTripId(rs.getInt("tripId"));
     
     
         return budget;

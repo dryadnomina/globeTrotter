@@ -74,10 +74,12 @@ public class TripDaoImpl implements TripDao {
     public void deleteTripByID(int id) {
         final String sql1 = "DELETE FROM activity WHERE tripId = ?";
         final String sql2 = "DELETE FROM accomodation WHERE tripId = ?";
-        final String sql3 = "DELETE FROM trip WHERE tripId = ?";
+        final String sql3 = "DELETE FROM budget WHERE tripId = ?";
+        final String sql4 = "DELETE FROM trip WHERE tripId = ?";
         jdbc.update(sql1, id);
         jdbc.update(sql2, id);
         jdbc.update(sql3, id);
+         jdbc.update(sql4, id);
     }
 
 }
