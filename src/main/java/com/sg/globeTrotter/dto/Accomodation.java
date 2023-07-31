@@ -17,11 +17,11 @@ public class Accomodation {
 
     private int id;
 
-    @NotBlank(message = "Name cannot be null!")
+    @NotBlank(message = "Name cannot be blank!")
     @Size(max = 100, message = "Name must be fewer than 100 characters")
     private String name;
 
-    @NotNull(message = "Type cannot be null!")
+    @NotBlank(message = "Type cannot be blank!")
     private String type;
 
     @Size(max = 255, message = "Description must be fewer than 100 characters")

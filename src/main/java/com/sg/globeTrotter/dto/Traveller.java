@@ -6,6 +6,7 @@ package com.sg.globeTrotter.dto;
 
 import java.util.List;
 import java.util.Objects;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,11 +17,11 @@ import javax.validation.constraints.Size;
 public class Traveller {
 
     private int id;
-    @NotNull
+    @NotBlank(message ="First name cannot be blank")
     @Size(max = 50, message = "First name must be fewer than 50 characters")
     private String firstName;
 
-    @NotNull
+    @NotBlank(message ="Last name cannot be blank")
     @Size(max = 50, message = "Last name must be fewer than 50 characters")
     private String lastName;
 
@@ -29,7 +30,7 @@ public class Traveller {
     private String postalCode;
     @Size(max = 50, message = "City must be fewer than 50 characters")
     private String City;
-    @NotNull
+    @NotBlank(message =" Phone number cannot be blank")
     @Size(min = 10, message = "Phone number must be at least 10 characters long")
     @Size(max = 10, message = "Phone number cannot be over 10 characters long")
     private String phoneNumber;

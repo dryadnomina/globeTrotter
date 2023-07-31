@@ -23,7 +23,7 @@ public class Trip {
     @NotBlank
     @Size(max = 100, message = "Title must be fewer than 100 characters")
     private String title;
-    @NotNull
+    @NotBlank
     private String type;
     @Size(max = 255, message = "Description must be fewer than 255 characters")
     private String description;

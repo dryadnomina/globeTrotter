@@ -20,7 +20,10 @@ public class Activity {
     @NotBlank(message = " Activity Name cannot be blank")
     @Size(max = 100, message = "Activity Name must be fewer than 100 characters")
     private String name;
+    @NotBlank(message = " Address cannot be blank")
+    @Size(max = 150, message = "Address must be fewer than 150 characters")
     private String address;
+     @Size(max = 255, message = "Address must be fewer than 255 characters")
     private String description;
     private Trip trip;
 

@@ -30,10 +30,10 @@ public class Budget {
     private BigDecimal total;
     @NotNull(message = "Trip cannot be null")
     private int tripId;
-     private Trip trip;
-   @NotBlank
-     @Size(max = 100, message = "Budget Name must be fewer than 100 characters")
-   private String name;
+    private Trip trip;
+    @NotBlank
+    @Size(max = 100, message = "Budget Name must be fewer than 100 characters")
+    private String name;
 
     public String getName() {
         return name;
@@ -42,7 +42,7 @@ public class Budget {
     public void setName(String name) {
         this.name = name;
     }
-   
+
     public int getTripId() {
         return tripId;
     }
@@ -98,8 +98,6 @@ public class Budget {
     public void setTrip(Trip trip) {
         this.trip = trip;
     }
-
- 
 
     public int getId() {
         return id;
@@ -163,7 +161,4 @@ public class Budget {
         return Objects.equals(this.trip, other.trip);
     }
 
-    
-    
-    
 }

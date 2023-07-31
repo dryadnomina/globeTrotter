@@ -57,9 +57,12 @@ public class TripController {
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try{
         trip.setStartDate(LocalDate.parse(startDate, formatter));
         trip.setEndDate(LocalDate.parse(endDate, formatter));
-
+        }catch(Exception e){
+         return "redirect:/trips";
+        }
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(trip);
         if (violations.isEmpty()) {

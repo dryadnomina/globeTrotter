@@ -148,7 +148,7 @@
                     <table class="table table-striped" th:if="${trips != null and !trips.empty}">
                         <thead>
                             <tr>
-
+                                  <th>Budget Name</th>
                                 <th>Accomodation Cost</th>
                                 <th>Food Cost</th>
                                 <th>Activity Cost</th>
@@ -161,7 +161,7 @@
                         </thead>
                         <tbody>
                             <tr th:each="budget : ${budgets}">
-
+                                 <td th:text="${budget.name}">Accomodation Cost</td>
                                 <td th:text="${budget.accomodationCost}">Accomodation Cost</td>
                                 <td th:text="${budget.foodCost}">Food Cost</td>
                                 <td th:text="${budget.activityCost}">Activity Cost</td>
