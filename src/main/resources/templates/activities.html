@@ -13,30 +13,30 @@
     <body>
         <div class="container" xmlns:th="http://www.w3.org/1999/xhtml">
             <div class="row m-4">
-                <div class="col text-center border border-dark">
+                <div class="col text-center ">
                     <h1><a href="/" class="text-dark">GlobeTrotter</a></h1>
                 </div>
             </div>
-            <div class="row m-4 border border-dark">
+            <div class="row m-4  ">
 
                 <div class="col text-center m-3">
-                    <a href="trips" class="btn btn-outline-primary btn-lg">Trips</a>
+                    <a href="trips" class="btn  btn-lg rounded-circle border-bottom">Trips</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="travellers" class="btn btn-outline-primary btn-lg">Travellers</a>
+                    <a href="travellers" class="btn  btn-lg rounded-circle">Travellers</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="accomodations" class="btn btn-outline-primary btn-lg">Accomodations</a>
+                    <a href="accomodations" class="btn  btn-lg rounded-circle border-bottom">Accomodations</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="activities" class="btn btn-outline-primary btn-lg">Activities</a>
+                    <a href="activities" class="btn  btn-lg rounded-circle">Activities</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="budgets" class="btn btn-outline-primary btn-lg">Budgets</a>
+                    <a href="budgets" class="btn  btn-lg rounded-circle border-bottom">Budgets</a>
                 </div>
             </div>
 
-            <div class="row m-4 border border-dark">
+            <div class="row m-4  ">
 
                 <div class="col-12 m-1 text-center"
                      th:if="${!errors.isEmpty()}">
@@ -99,11 +99,11 @@
                             <button type="submit" class="btn btn-primary">Add Activity</button>
                         </form>
                     </div>
-                    <h3 th:unless="${trips != null and !trips.empty}">Add your First Trip!</h3>
+                    <h3 th:unless="${trips != null and !trips.empty}" class="h3 text-center m-4 p-5 bg-warning rounded-circle">Add your First Trip!</h3>
                 </div>
 
             </div>
-            <div class="row m-4 border border-dark" th:if="${trips !=null and !trips.empty}">
+            <div class="row m-4  " th:if="${trips !=null and !trips.empty}">
 
                 <div class="col text-center m-3">
                     <table class="table table-striped">

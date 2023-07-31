@@ -4,39 +4,39 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-          <!--        custom css-->
+        <!--        custom css-->
         <link th:href="@{/styles/styles.css}" rel="stylesheet" />
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        
+
     </head>
     <body>
         <div class="container" xmlns:th="http://www.w3.org/1999/xhtml">
             <div class="row m-4">
-                <div class="col text-center border border-dark">
+                <div class="col text-center  ">
                     <h1><a href="/" class="text-dark">GlobeTrotter</a></h1>
                 </div>
             </div>
-           <div class="row m-4 border border-dark">
+               <div class="row m-4  ">
 
-                    <div class="col text-center m-3">
-                        <a href="trips" class="btn btn-outline-primary btn-lg">Trips</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="travellers" class="btn btn-outline-primary btn-lg">Travellers</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="accomodations" class="btn btn-outline-primary btn-lg">Accomodations</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="activities" class="btn btn-outline-primary btn-lg">Activities</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="budgets" class="btn btn-outline-primary btn-lg">Budgets</a>
-                    </div>
+                <div class="col text-center m-3">
+                    <a href="trips" class="btn  btn-lg rounded-circle border-bottom">Trips</a>
                 </div>
+                <div class="col text-center m-3">
+                    <a href="travellers" class="btn  btn-lg rounded-circle">Travellers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="accomodations" class="btn  btn-lg rounded-circle border-bottom">Accomodations</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="activities" class="btn  btn-lg rounded-circle">Activities</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="budgets" class="btn  btn-lg rounded-circle border-bottom">Budgets</a>
+                </div>
+            </div>
 
-            <div class="row m-4 border border-dark">
+            <div class="row m-4  ">
 
                 <div class="col-12 m-1 text-center"
                      th:if="${!errors.isEmpty()}">
@@ -44,11 +44,12 @@
                        th:text="${error.message}">Error message</p>
                 </div>
 
-                <div class="col-3 text-center m-3">
-                    <span class="h3">Add Accomodation</span>
-                </div>
+
                 <div class="col-7 text-center m-3">
                     <div th:if="${trips !=null and !trips.empty}">
+                        <div class="col-3 text-center m-3">
+                            <span class="h3" >Add Accomodation</span>
+                        </div>
                         <form action="addAccomodation" method="POST">
                             <div class="form-group row">
                                 <label for="name" class="col-3 col-form-label">
@@ -101,19 +102,21 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary">Add Accomodation</button>
+                            
                         </form>
+                           
                     </div>
-                    <div th:unless="${trips != null and !trips.empty}">Add you First Trip!</div>
+                  <div th:unless="${trips != null and !trips.empty}" class="h3 text-center m-4 p-5 bg-warning rounded-circle">Add your First Trip!</div>
                 </div>
-
+               
             </div>
-            <div class="row m-4 border border-dark">
+            <div class="row m-4  " >
 
-                <div class="col text-center m-3">
-                    <table class="table table-striped">
+                <div class="col text-center m-3" >
+                    <table class="table table-striped"  th:if="${trips != null and !trips.empty}">
                         <thead>
                             <tr>
-                               
+
                                 <th>Accomodation Name</th>
                                 <th>Accomodation Type</th>
                                 <th>Accomodation Description</th>
@@ -124,7 +127,7 @@
                         </thead>
                         <tbody>
                             <tr th:each="accomodation : ${accomodations}">
-                              
+
                                 <td th:text="${accomodation.name}">Name</td>
                                 <td th:text="${accomodation.type}">Type</td>
                                 <td th:text="${accomodation.description}">Description</td>

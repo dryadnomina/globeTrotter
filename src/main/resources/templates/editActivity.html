@@ -4,7 +4,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!--        custom css-->
+        <!--        custom css-->
         <link th:href="@{/styles/styles.css}" rel="stylesheet" />
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -15,31 +15,31 @@
         <!-- Main Body of Page -->
         <div class="container">
             <div class="row m-4">
-                <div class="col text-center border border-dark">
+                <div class="col text-center  ">
                     <h1><a href="/" class="text-dark">GlobeTrotter</a></h1>
                 </div>
             </div>
-            <div class="row m-3 border border-dark">
-                 <div class="row m-4 border border-dark">
+            <div class="row m-3  ">
+              <div class="row m-4  ">
 
-                    <div class="col text-center m-3">
-                        <a href="trips" class="btn btn-outline-primary btn-lg">Trips</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="travellers" class="btn btn-outline-primary btn-lg">Travellers</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="accomodations" class="btn btn-outline-primary btn-lg">Accomodations</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="activities" class="btn btn-outline-primary btn-lg">Activities</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="budgets" class="btn btn-outline-primary btn-lg">Budgets</a>
-                    </div>
+                <div class="col text-center m-3">
+                    <a href="trips" class="btn  btn-lg rounded-circle border-bottom">Trips</a>
                 </div>
+                <div class="col text-center m-3">
+                    <a href="travellers" class="btn  btn-lg rounded-circle">Travellers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="accomodations" class="btn  btn-lg rounded-circle border-bottom">Accomodations</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="activities" class="btn  btn-lg rounded-circle">Activities</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="budgets" class="btn  btn-lg rounded-circle border-bottom">Budgets</a>
+                </div>
+            </div>
 
-                <div class="row m-3 border border-dark">
+                <div class="row m-3  ">
                     <div class="col-3 text-center m-3">
                         <span class="h3">Edit Activity</span>
                     </div>
@@ -59,8 +59,8 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                             <div class="form-group row">
+
+                            <div class="form-group row">
                                 <label for="address" class="col-3 col-form-label">Description</label>
                                 <div class="col-9">
                                     <input type="text" name="address" id="address" class="form-control"
@@ -84,27 +84,27 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                         
 
-                        <div class="form-group row">
-                            <label for="trip" class="col-3 col-form-label">
-                                Trip</label>
-                            <div class="col-9">
-                                <select id="tripId" name="tripId" class="form-control"  th:value="${activity.trip.id}" >
-                                    <option th:each="trip : ${trips}"
-                                            th:value="${trip.id}"
-                                            th:text="${trip.title}">
-                                        Trip Name
-                                    </option>
-                                </select>
-                                  <div th:if="${#fields.hasErrors('activity.trip.id')}">
+
+
+                            <div class="form-group row">
+                                <label for="trip" class="col-3 col-form-label">
+                                    Trip</label>
+                                <div class="col-9">
+                                    <select id="tripId" name="tripId" class="form-control"  th:value="${activity.trip.id}" >
+                                        <option th:each="trip : ${trips}"
+                                                th:value="${trip.id}"
+                                                th:text="${trip.title}">
+                                            Trip Name
+                                        </option>
+                                    </select>
+                                    <div th:if="${#fields.hasErrors('activity.trip.id')}">
                                         <p th:each="error : ${#fields.errors('activity.trip.id')}"
                                            class="alert alert-danger" th:text="${error}">
                                         </p>
                                     </div>
+                                </div>
                             </div>
-                        </div>
 
 
                             <button type="submit" class="btn btn-primary">Edit Trip</button>
@@ -112,6 +112,7 @@
                     </div>
                 </div>
             </div>
+        </div>
             <!-- End main body -->
 
             <!-- Optional JavaScript -->
