@@ -19,8 +19,6 @@ public interface TravellerDao {
 
     Traveller addTraveller(Traveller traveller);
 
-    Traveller checkIfTravellerJoinedTrip(int id, int tripId);
-
     void updateTraveller(Traveller traveller);
 
     void addTravellerToTrip(int id, int tripId);

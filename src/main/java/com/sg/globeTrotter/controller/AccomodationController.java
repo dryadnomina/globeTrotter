@@ -64,12 +64,6 @@ public class AccomodationController {
         return "redirect:/accomodations";
     }
 
-//     @GetMapping("accomodations")
-//    public String displayActivityByID(Integer id, Model model) {
-//       Accomodation accomodation = service.getAccomodationByID(id);
-//       model.addAttribute("accomodation", accomodation);
-//        return "accomodations";
-//    }
     @GetMapping("deleteAccomodation")
     public String deleteAccomodation(Integer id) {
         service.deleteAccomodationByID(id);

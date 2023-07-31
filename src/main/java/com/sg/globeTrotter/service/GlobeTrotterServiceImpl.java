@@ -90,11 +90,6 @@ public class GlobeTrotterServiceImpl implements GlobeTrotterService {
     }
 
     @Override
-    public Traveller checkforTravelleronTrip(int id, int tripId) {
-        return travellerDao.checkIfTravellerJoinedTrip(id, tripId);
-    }
-
-    @Override
     public void updateTraveller(Traveller traveller) {
         travellerDao.updateTraveller(traveller);
     }

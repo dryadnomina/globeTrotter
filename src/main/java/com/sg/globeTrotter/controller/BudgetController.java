@@ -77,12 +77,7 @@ public class BudgetController {
     @PostMapping("editBudget")
     public String performEditBudget(@Valid Budget budget, BindingResult result, HttpServletRequest request, Model model) {
          List<Trip> trips = service.getAllTrips();
-        System.out.println("accomodation " + budget.getAccomodationCost());
-        System.out.println("food " + budget.getFoodCost());
-        System.out.println("transport " + budget.getTransportationCost());
-        System.out.println("activity " + budget.getActivityCost());
-         System.out.println("tripId " + budget.getTripId());
-          System.out.println("trip " + budget.getTrip());
+    
         if (result.hasErrors()) {
             model.addAttribute("budget", budget);
             model.addAttribute("trips", trips);

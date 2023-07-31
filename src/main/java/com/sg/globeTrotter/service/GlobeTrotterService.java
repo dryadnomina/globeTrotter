@@ -41,8 +41,6 @@ public interface GlobeTrotterService {
 
     void addTravellerToTrip(int id, int tripId);
 
-    Traveller checkforTravelleronTrip(int id, int tripId);
-
     void deleteTravellerByID(int id);
 
 //Activity

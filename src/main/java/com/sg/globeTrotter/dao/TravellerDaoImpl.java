@@ -65,17 +65,6 @@ public class TravellerDaoImpl implements TravellerDao {
 
     }
 
-    @Override
-    public Traveller checkIfTravellerJoinedTrip(int id, int tripId) {
-        String sql = "SELECT *\n"
-                + "FROM  tripTraveller\n"
-                + "JOIN trip \n"
-                + "  ON trip.tripId = tripTraveller.tripId\n"
-                + "JOIN traveller \n"
-                + "  ON Traveller.travellerId = tripTraveller.travellerId WHERE tripTraveller.travellerId = ? AND tripTraveller.tripId = ?";
-        return jdbc.queryForObject(sql, new TravellerMapper());
-
-    }
 
     @Override
     public void updateTraveller(Traveller traveller) {
