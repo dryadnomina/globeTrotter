@@ -4,23 +4,23 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!--        custom css-->
+  <!--        custom css-->
         <link th:href="@{/styles/styles.css}" rel="stylesheet" />
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-        <title>Edit Activity</title>
+        <title>Edit Accomodation</title>
     </head>
     <body>
         <!-- Main Body of Page -->
         <div class="container">
             <div class="row m-4">
-                <div class="col text-center  ">
+                <div class="col text-center ">
                     <h1><a href="/" class="text-dark">GlobeTrotter</a></h1>
                 </div>
             </div>
-            <div class="row m-3  ">
-              <div class="row m-4  ">
+            <div class="row m-3 ">
+           <div class="row m-4  ">
 
                 <div class="col text-center m-3">
                     <a href="trips" class="btn  btn-lg rounded-circle border-bottom">Trips</a>
@@ -38,47 +38,55 @@
                     <a href="budgets" class="btn  btn-lg rounded-circle border-bottom">Budgets</a>
                 </div>
             </div>
-
-                <div class="row m-3  ">
+                <div class="row m-3 ">
                     <div class="col-3 text-center m-3">
-                        <span class="h3">Edit Activity</span>
+                        <span class="h3">Edit Accomodation</span>
                     </div>
                     <div class="col-7 text-center m-3">
-                        <form action="editActivity" method="POST">
-                            <input type="hidden" name="id" id="id" th:value="${activity.id}"/>
+                        <form action="editAccomodation" method="POST">
+                            <input type="hidden" name="id" id="id" th:value="${accomodation.id}"/>
                             <div class="form-group row">
-                                <label for="title" class="col-3 col-form-label">
-                                    Activity Name</label>
+                                <label for="name" class="col-3 col-form-label">
+                                    Accomodation Name</label>
                                 <div class="col-9">
                                     <input type="text" name="name"
-                                           id="name" class="form-control" th:value="${activity.name}"/>
-                                    <div th:if="${#fields.hasErrors('activity.name')}">
-                                        <p th:each="error : ${#fields.errors('activity.name')}"
+                                           id="name" class="form-control" th:value="${accomodation.name}"/>
+                                    <div th:if="${#fields.hasErrors('accomodation.name')}">
+                                        <p th:each="error : ${#fields.errors('accomodation.name')}"
+                                           class="alert alert-danger" th:text="${error}">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="type" class="col-3 col-form-label">Type</label>
+                                <div class="col-9">
+                                    <select name="type" id="type" class="form-control" th:value="${accomodation.type}" >
+                                        <option value="hotel">Hotel</option>
+                                        <option value="campsite">campsite</option>
+                                        <option value="motel">Motel</option>
+                                        <option value="homestay">homestay</option>
+                                        <option value="resort">resort</option>
+                                        <option value="airbnb">airbnb</option>
+                                        <option value="home">home</option>
+                                        <option value="with family/friends">with family/friends</option>
+                                    </select>
+                                    <div th:if="${#fields.hasErrors('accomodation.type')}">
+                                        <p th:each="error : ${#fields.errors('accomodation.type')}"
                                            class="alert alert-danger" th:text="${error}">
                                         </p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="address" class="col-3 col-form-label">Description</label>
-                                <div class="col-9">
-                                    <input type="text" name="address" id="address" class="form-control"
-                                           th:value="${activity.address}" />
-                                    <div th:if="${#fields.hasErrors('activity.address')}">
-                                        <p th:each="error : ${#fields.errors('activity.address')}"
-                                           class="alert alert-danger" th:text="${error}">
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="form-group row">
                                 <label for="description" class="col-3 col-form-label">Description</label>
                                 <div class="col-9">
                                     <input type="text" name="description" id="description" class="form-control"
-                                           th:value="${activity.description}" />
-                                    <div th:if="${#fields.hasErrors('activity.description')}">
-                                        <p th:each="error : ${#fields.errors('activity.description')}"
+                                           th:value="${accomodation.description}" />
+                                    <div th:if="${#fields.hasErrors('accomodation.description')}">
+                                        <p th:each="error : ${#fields.errors('accomodation.description')}"
                                            class="alert alert-danger" th:text="${error}">
                                         </p>
                                     </div>
@@ -88,31 +96,32 @@
 
 
                             <div class="form-group row">
-                                <label for="trip" class="col-3 col-form-label">
+                                <label for="tripId" class="col-3 col-form-label">
                                     Trip</label>
                                 <div class="col-9">
-                                    <select id="tripId" name="tripId" class="form-control"  th:value="${activity.trip.id}" >
+                                    <select id="tripId" name="tripId" class="form-control" >
                                         <option th:each="trip : ${trips}"
                                                 th:value="${trip.id}"
                                                 th:text="${trip.title}">
                                             Trip Name
                                         </option>
                                     </select>
-                                    <div th:if="${#fields.hasErrors('activity.trip.id')}">
-                                        <p th:each="error : ${#fields.errors('activity.trip.id')}"
+                                    <div th:if="${#fields.hasErrors('accomodation.tripId')}">
+                                        <p th:each="error : ${#fields.errors('accomodation.tripId')}"
                                            class="alert alert-danger" th:text="${error}">
                                         </p>
                                     </div>
+
                                 </div>
                             </div>
 
 
-                            <button type="submit" class="btn btn-primary">Edit Trip</button>
+
+                            <button type="submit" class="btn btn-primary">Edit Accomodation</button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
             <!-- End main body -->
 
             <!-- Optional JavaScript -->

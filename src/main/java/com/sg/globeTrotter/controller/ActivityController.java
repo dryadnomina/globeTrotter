@@ -5,6 +5,7 @@
 package com.sg.globeTrotter.controller;
 
 import com.sg.globeTrotter.dto.Activity;
+import com.sg.globeTrotter.dto.Activity;
 import com.sg.globeTrotter.dto.Trip;
 import com.sg.globeTrotter.service.GlobeTrotterService;
 import java.util.HashSet;
@@ -34,26 +35,24 @@ public class ActivityController {
     Set<ConstraintViolation<Activity>> violations = new HashSet<>();
 
     @GetMapping("activities")
-    public String displayActivitiesAndTrips(Model model) {
+    public String displayActivities(Model model) {
         List<Activity> activities = service.getAllActivities();
         List<Trip> trips = service.getAllTrips();
         model.addAttribute("activities", activities);
         model.addAttribute("trips", trips);
         model.addAttribute("errors", violations);
-        model.addAttribute("activity", new Activity());
+
         return "activities";
     }
 
     @PostMapping("addActivity")
-    public String addActivity(HttpServletRequest request) {
-        Activity activity =new Activity();
-        activity.setName(request.getParameter("activityName"));
-        activity.setTripId(Integer.parseInt(request.getParameter("tripId")));
-        
+    public String addActivity(Activity activity, HttpServletRequest request) {
+
+        int tripId = Integer.parseInt(request.getParameter("tripId"));
+        Trip trip = service.getTripByID(tripId);
+        activity.setTrip(trip);
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
-        violations = validate.validate(activity);
-      
-    
+
         if (violations.isEmpty()) {
             service.addActivity(activity);
 
@@ -67,10 +66,19 @@ public class ActivityController {
         return "redirect:/activities";
     }
 
+    @GetMapping("activityDetail")
+    public String displayActivityByID(Integer id, Model model) {
+        Activity activity = service.getActivityByID(id);
+        model.addAttribute("activity", activity);
+        return "activityDetail";
+    }
+
     @GetMapping("editActivity")
     public String editActivity(Integer id, Model model) {
         Activity activity = service.getActivityByID(id);
+        List<Trip> trips = service.getAllTrips();
         model.addAttribute("activity", activity);
+        model.addAttribute("trips", trips);
         return "editActivity";
     }
 
@@ -82,8 +90,10 @@ public class ActivityController {
             return "editActivity";
         }
 
-        service.updateActivity(activity);
+            service.updateActivity(activity);
 
+        
         return "redirect:/activities";
     }
+
 }

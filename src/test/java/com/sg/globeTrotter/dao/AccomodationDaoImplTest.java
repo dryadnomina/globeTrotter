@@ -72,7 +72,7 @@ public class AccomodationDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(false);
+        
 
         Trip addedTrip = tripDao.addTrip(trip);
 
@@ -98,7 +98,7 @@ public class AccomodationDaoImplTest {
 
         trip.setStartDate(dateStart2);
         trip.setEndDate(dateEnd2);
-        trip.setCompleted(false);
+        
         Trip addedTrip = tripDao.addTrip(trip);
 
         Accomodation accomodation = new Accomodation();
@@ -132,11 +132,12 @@ public class AccomodationDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(false);
+        
         Trip addedTrip = tripDao.addTrip(trip);
 
         Accomodation accomodation = new Accomodation();
         accomodation.setTrip(addedTrip);
+         accomodation.setTripId(addedTrip.getId());
         accomodation.setType("airbnb");
         accomodation.setName("Kyoto hotel");
         accomodation.setDescription("checking in early");
@@ -163,7 +164,7 @@ public class AccomodationDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(true);
+        
         Trip addedTrip = tripDao.addTrip(trip);
 
         Accomodation accomodation = new Accomodation();

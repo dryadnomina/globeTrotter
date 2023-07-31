@@ -13,11 +13,11 @@
     <body>
         <div class="container" xmlns:th="http://www.w3.org/1999/xhtml">
             <div class="row m-4">
-                <div class="col text-center ">
+                <div class="col text-center  ">
                     <h1><a href="/" class="text-dark">GlobeTrotter</a></h1>
                 </div>
             </div>
-            <div class="row m-4  ">
+               <div class="row m-4  ">
 
                 <div class="col text-center m-3">
                     <a href="trips" class="btn  btn-lg rounded-circle border-bottom">Trips</a>
@@ -48,12 +48,12 @@
                 <div class="col-7 text-center m-3">
                     <div th:if="${trips !=null and !trips.empty}">
                         <div class="col-3 text-center m-3">
-                            <span class="h3">Add Activity</span>
+                            <span class="h3" >Add Accomodation</span>
                         </div>
-                        <form action="addActivity" method="POST">
+                        <form action="addAccomodation" method="POST">
                             <div class="form-group row">
                                 <label for="name" class="col-3 col-form-label">
-                                    Activity Name</label>
+                                    Accomodation Name</label>
                                 <div class="col-9">
                                     <input type="text" name="name"
                                            id="name"
@@ -62,13 +62,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="address" class="col-3 col-form-label">
-                                    Address</label>
+                                <label for="type" class="col-3 col-form-label">Type</label>
                                 <div class="col-9">
-                                    <input type="text" name="address"
-                                           id="address"
-
-                                           class="form-control"/>
+                                    <select name="type" id="type" class="form-control">
+                                        <option value="hotel">Hotel</option>
+                                        <option value="campsite">campsite</option>
+                                        <option value="motel">Motel</option>
+                                        <option value="homestay">homestay</option>
+                                        <option value="resort">resort</option>
+                                        <option value="airbnb">airbnb</option>
+                                        <option value="home">home</option>
+                                        <option value="with family/friends">with family/friends</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -83,10 +88,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="tripId" class="col-3 col-form-label">
+                                <label for="trip" class="col-3 col-form-label">
                                     Trip</label>
                                 <div class="col-9">
-                                    <select id="tripUd" name="tripId" class="form-control" >
+                                    <select id="tripId" name="tripId" class="form-control" >
                                         <option th:each="trip : ${trips}"
                                                 th:value="${trip.id}"
                                                 th:text="${trip.title}">
@@ -96,36 +101,43 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Add Activity</button>
+                            <button type="submit" class="btn btn-primary">Add Accomodation</button>
+                            
                         </form>
+                           
                     </div>
-                    <h3 th:unless="${trips != null and !trips.empty}" class="h3 text-center m-4 p-5 bg-warning rounded-circle">Add your First Trip!</h3>
+                  <div th:unless="${trips != null and !trips.empty}" class="h3 text-center m-4 p-5 bg-warning rounded-circle">Add your First Trip!</div>
                 </div>
-
+               
             </div>
-            <div class="row m-4  " th:if="${trips !=null and !trips.empty}">
+            <div class="row m-4  " >
 
-                <div class="col text-center m-3">
-                    <table class="table table-striped">
+                <div class="col text-center m-3" >
+                    <table class="table table-striped"  th:if="${trips != null and !trips.empty}">
                         <thead>
                             <tr>
 
-                                <th>Activity Name</th>
-                                <th>Trip Name</th>
-                                <th>Detail</th>
+                                <th>Accomodation Name</th>
+                                <th>Accomodation Type</th>
+                                <th>Accomodation Description</th>
+                                <th>Trip Name</th>                             
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="activity : ${activities}">
+                            <tr th:each="accomodation : ${accomodations}">
 
-                                <td th:text="${activity.name}">Activity Name</td>
+                                <td th:text="${accomodation.name}">Name</td>
+                                <td th:text="${accomodation.type}">Type</td>
+                                <td th:text="${accomodation.description}">Description</td>
+                                <td th:text="${accomodation.trip.title}">trip name</td>
 
-                                <td th:text="${activity.trip.title}">Trip</td>
-                                <td><a href="#" th:href="@{/activityDetail(id=${activity.id})}">Detail</a></td>
-                                <td><a href="#" th:href="@{/editActivity(id=${activity.id})}">Edit</a></td>
-                                <td><a href="#" th:href="@{/deleteActivity(id=${activity.id})}">Delete</a></td>
+
+
+
+                                <td><a href="#" th:href="@{/editAccomodation(id=${accomodation.id})}">Edit</a></td>
+                                <td><a href="#" th:href="@{/deleteAccomodation(id=${accomodation.id})}">Delete</a></td>
                             </tr>
                         </tbody>
                     </table>

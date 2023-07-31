@@ -24,7 +24,7 @@ public class Traveller {
     @Size(max = 50, message = "Last name must be fewer than 50 characters")
     private String lastName;
 
-    @Size(min = 6, message = "Postal Code must be at least 6 characters long")
+   
     @Size(max = 6, message = "Postal code cannot be over 6 characters long")
     private String postalCode;
     @Size(max = 50, message = "City must be fewer than 50 characters")

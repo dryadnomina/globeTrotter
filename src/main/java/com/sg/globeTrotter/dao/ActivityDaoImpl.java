@@ -6,7 +6,7 @@ package com.sg.globeTrotter.dao;
 
 import com.sg.globeTrotter.dto.Activity;
 import com.sg.globeTrotter.dto.Trip;
-import com.sg.globeTrotter.mappers.ActivityDetailMapper;
+import com.sg.globeTrotter.mappers.BudgetMapper;
 import com.sg.globeTrotter.mappers.ActivityMapper;
 import com.sg.globeTrotter.mappers.TripMapper;
 import java.util.List;
@@ -33,8 +33,8 @@ public class ActivityDaoImpl implements ActivityDao {
             String sql = "SELECT * FROM activity WHERE activityId = ?";
             Activity activity = jdbc.queryForObject(sql, new ActivityMapper(), id);
 
-           
-
+            Trip trip = setTripForActivity(activity);
+            activity.setTrip(trip);
             return activity;
 
         } catch (DataAccessException ex) {
@@ -42,33 +42,39 @@ public class ActivityDaoImpl implements ActivityDao {
         }
     }
 
-//    private Trip setTripForActivity(Activity activity) {
-//        try {
-//            String sql = "SELECT * FROM trip JOIN activity ON activity.tripId = trip.tripId WHERE activity.activityId = ?";
-//            Trip trip = jdbc.queryForObject(sql, new TripMapper(), activity.getId());
-//            return trip;
-//        } catch (DataAccessException e) {
-//            return null;
-//        }
-//    }
+    private Trip setTripForActivity(Activity activity) {
+        try {
+            String sql = "SELECT * FROM trip JOIN activity ON activity.tripId = trip.tripId WHERE activity.activityId = ?";
+            Trip trip = jdbc.queryForObject(sql, new TripMapper(), activity.getId());
+            return trip;
+        } catch (DataAccessException e) {
+            return null;
+        }
+    }
 
     @Override
     public List<Activity> getAllActivities() {
         String sql = "SELECT * FROM activity";
         List<Activity> activities = jdbc.query(sql, new ActivityMapper());
 
-       
+        activities.forEach(activity -> {
+            Trip trip = setTripForActivity(activity);
+            activity.setTrip(trip);
+
+        });
         return activities;
     }
 
     @Override
     public Activity addActivity(Activity activity) {
-        final String sql = "INSERT INTO activity (activityName, tripId) VALUES(?,?)";
+        final String sql = "INSERT INTO activity (activityName,description,address, tripId) VALUES(?,?,?,?)";
 
         
         jdbc.update(sql,
                 activity.getName(),
-                activity.getTripId());
+                activity.getDescription(),
+                activity.getAddress(),
+                activity.getTrip().getId());
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         activity.setId(newId);
@@ -84,10 +90,10 @@ public class ActivityDaoImpl implements ActivityDao {
 
     @Override
     public void deleteActivityByID(int id) {
-        String sql1 = "DELETE FROM detail WHERE activityId = ?";
+//        String sql1 = "DELETE FROM detail WHERE activityId = ?";
         String sql2 = "DELETE FROM activity WHERE activityId = ?";
 
-        jdbc.update(sql1, id);
+//        jdbc.update(sql1, id);
 
         jdbc.update(sql2, id);
     }

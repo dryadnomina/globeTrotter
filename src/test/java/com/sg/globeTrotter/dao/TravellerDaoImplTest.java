@@ -73,7 +73,7 @@ public class TravellerDaoImplTest {
         trip.setTitle("YOLO");
         trip.setDescription("Summer BucketList");
         trip.setType("staycation");
-        trip.setCompleted(false);
+       
 
         Traveller traveller = new Traveller();
         traveller.setFirstName("Santa");

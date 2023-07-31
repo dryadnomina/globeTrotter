@@ -6,12 +6,12 @@ package com.sg.globeTrotter.service;
 
 import com.sg.globeTrotter.dao.AccomodationDao;
 import com.sg.globeTrotter.dao.ActivityDao;
-import com.sg.globeTrotter.dao.ActivityDetailDao;
+import com.sg.globeTrotter.dao.BudgetDao;
 import com.sg.globeTrotter.dao.TravellerDao;
 import com.sg.globeTrotter.dao.TripDao;
 import com.sg.globeTrotter.dto.Accomodation;
 import com.sg.globeTrotter.dto.Activity;
-import com.sg.globeTrotter.dto.ActivityDetail;
+import com.sg.globeTrotter.dto.Budget;
 import com.sg.globeTrotter.dto.Traveller;
 import com.sg.globeTrotter.dto.Trip;
 import java.util.List;
@@ -35,7 +35,7 @@ public class GlobeTrotterServiceImpl implements GlobeTrotterService {
     ActivityDao activityDao;
 
     @Autowired
-    ActivityDetailDao detailDao;
+    BudgetDao detailDao;
 
     @Autowired
     TravellerDao travellerDao;
@@ -53,8 +53,13 @@ public class GlobeTrotterServiceImpl implements GlobeTrotterService {
     }
 
     @Override
-    public Trip addTrip(Trip trip) {    
-        
+    public List<Trip> getAllTripsByTravellerID(int id) {
+        return tripDao.getAllTripsByTravellerID(id);
+    }
+
+    @Override
+    public Trip addTrip(Trip trip) {
+
         return tripDao.addTrip(trip);
     }
 
@@ -82,6 +87,11 @@ public class GlobeTrotterServiceImpl implements GlobeTrotterService {
     @Override
     public Traveller addTraveller(Traveller traveller) {
         return travellerDao.addTraveller(traveller);
+    }
+
+    @Override
+    public Traveller checkforTravelleronTrip(int id, int tripId) {
+        return travellerDao.checkIfTravellerJoinedTrip(id, tripId);
     }
 
     @Override
@@ -127,28 +137,28 @@ public class GlobeTrotterServiceImpl implements GlobeTrotterService {
 
     //Activity Detail
     @Override
-    public ActivityDetail getActivityDetailByID(int id) {
-        return detailDao.getActivityDetailByID(id);
+    public Budget getBudgetByID(int id) {
+        return detailDao.getBudgetByID(id);
     }
 
     @Override
-    public List<ActivityDetail> getAllActivityDetails() {
-        return detailDao.getAllActivityDetails();
+    public List<Budget> getAllBudgets() {
+        return detailDao.getAllBudgets();
     }
 
     @Override
-    public ActivityDetail addActivityDetail(ActivityDetail detail) {
-        return detailDao.addActivityDetail(detail);
+    public Budget addBudget(Budget detail) {
+        return detailDao.addBudget(detail);
     }
 
     @Override
-    public void updateActivityDetail(ActivityDetail detail) {
-        detailDao.updateActivityDetail(detail);
+    public void updateBudget(Budget detail) {
+        detailDao.updateBudget(detail);
     }
 
     @Override
-    public void deleteActivityDetailByID(int id) {
-        detailDao.deleteActivityDetailByID(id);
+    public void deleteBudgetByID(int id) {
+        detailDao.deleteBudgetByID(id);
     }
 
     //Accomodations

@@ -4,22 +4,21 @@
  */
 package com.sg.globeTrotter.dao;
 
-import com.sg.globeTrotter.dto.Trip;
+import com.sg.globeTrotter.dto.Budget;
 import java.util.List;
 
 /**
  *
  * @author marya
  */
-public interface TripDao {
-    Trip getTripByID(int id);
+public interface BudgetDao {
+    Budget getBudgetByID(int id);
 
-    List<Trip> getAllTrips();
+    List<Budget> getAllBudgets();
 
-    Trip addTrip(Trip trip);
+    Budget addBudget(Budget detail);
 
-    void updateTrip(Trip trip);
-    List<Trip> getAllTripsByTravellerID(Integer id);
+    void updateBudget(Budget detail);
 
-    void deleteTripByID(int id);
+    void deleteBudgetByID(int id);
 }

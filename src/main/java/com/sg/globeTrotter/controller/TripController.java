@@ -38,6 +38,10 @@ public class TripController {
     GlobeTrotterService service;
     Set<ConstraintViolation<Trip>> violations = new HashSet<>();
 
+    @GetMapping("/")
+    public String displayHomePage() {
+        return "index";
+    }
 
     @GetMapping("trips")
     public String displayTrips(Model model) {
@@ -49,18 +53,18 @@ public class TripController {
     }
 
     @PostMapping("addTrip")
-    public String addTrip(Trip trip,HttpServletRequest request) {
-        String startDate=request.getParameter("startDate");
-        String endDate=request.getParameter("endDate");
+    public String addTrip(Trip trip, HttpServletRequest request) {
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        trip.setStartDate(LocalDate.parse(startDate,formatter));
-        trip.setEndDate(LocalDate.parse(endDate,formatter));
-      
+        trip.setStartDate(LocalDate.parse(startDate, formatter));
+        trip.setEndDate(LocalDate.parse(endDate, formatter));
+
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(trip);
         if (violations.isEmpty()) {
             service.addTrip(trip);
-            
+
         }
         return "redirect:/trips";
     }
@@ -84,9 +88,9 @@ public class TripController {
         if (result.hasErrors()) {
             model.addAttribute("trip", trip);
             return "editTrip";
-        }else{
+        } else {
 
-        service.updateTrip(trip);
+            service.updateTrip(trip);
         }
 
         return "redirect:/trips";

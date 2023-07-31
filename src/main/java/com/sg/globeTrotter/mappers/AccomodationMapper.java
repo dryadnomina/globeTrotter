@@ -22,6 +22,7 @@ public class AccomodationMapper implements RowMapper<Accomodation> {
         accomodation.setDescription(rs.getString("description"));
         accomodation.setName(rs.getString("name"));
         accomodation.setType(rs.getString("type"));
+        accomodation.setTripId(rs.getInt("tripId"));
         return accomodation;
 
     }

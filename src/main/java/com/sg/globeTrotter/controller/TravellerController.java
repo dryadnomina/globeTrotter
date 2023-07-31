@@ -5,6 +5,7 @@
 package com.sg.globeTrotter.controller;
 
 import com.sg.globeTrotter.dto.Traveller;
+import com.sg.globeTrotter.dto.Trip;
 import com.sg.globeTrotter.service.GlobeTrotterService;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +28,6 @@ import org.springframework.web.bind.annotation.PostMapping;
  *
  * @author marya
  */
-
 @Controller
 public class TravellerController {
 
@@ -56,6 +56,26 @@ public class TravellerController {
         return "redirect:/travellers";
     }
 
+    @PostMapping("addTravellerToTrip")
+    public String addTravellerToTrip(Integer id, Integer tripId, Model model) {
+        Traveller traveller = service.getTravellerByID(id);
+        model.addAttribute("traveller", traveller);
+        service.addTravellerToTrip(id, tripId);
+        return "redirect:/travellers";
+    }
+
+    @GetMapping("addTravellerToTrip")
+    public String displayAddTravellerToPage(Integer id, Model model) {
+        Traveller traveller = service.getTravellerByID(id);
+        List<Trip> trips = service.getAllTrips();
+        List<Trip> tripsWithTraveller = service.getAllTripsByTravellerID(id);
+
+        model.addAttribute("traveller", traveller);
+        model.addAttribute("trips", trips);
+        model.addAttribute("tripsWithTraveller", tripsWithTraveller);
+        return "addTravellerToTrip";
+    }
+
     @GetMapping("deleteTraveller")
     public String deleteTraveller(Integer id) {
         service.deleteTravellerByID(id);
@@ -77,8 +97,7 @@ public class TravellerController {
             return "editTraveller";
         }
 
-            service.updateTraveller(traveller);
-        
+        service.updateTraveller(traveller);
 
         return "redirect:/travellers";
     }

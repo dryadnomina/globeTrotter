@@ -28,14 +28,12 @@ public class Trip {
     @Size(max = 255, message = "Description must be fewer than 255 characters")
     private String description;
     @NotNull
-    @PastOrPresent(message = "Start date must be in the past or in the present")
+    @FutureOrPresent(message = "Start date must be in the future or in the present")
     private LocalDate startDate;
     @NotNull
     @FutureOrPresent(message = "End date must be in the present or in the future")
     private LocalDate endDate;
 
-    @NotNull
-    private boolean completed;
     private List<Accomodation> accomodations;
 
     private List<Traveller> travellers;
@@ -104,13 +102,6 @@ public class Trip {
         this.description = description;
     }
 
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
 
     @Override
     public int hashCode() {
@@ -121,7 +112,7 @@ public class Trip {
         hash = 17 * hash + Objects.hashCode(this.description);
         hash = 17 * hash + Objects.hashCode(this.startDate);
         hash = 17 * hash + Objects.hashCode(this.endDate);
-        hash = 17 * hash + (this.completed ? 1 : 0);
+  
         hash = 17 * hash + Objects.hashCode(this.accomodations);
         hash = 17 * hash + Objects.hashCode(this.travellers);
         return hash;
@@ -142,9 +133,7 @@ public class Trip {
         if (this.id != other.id) {
             return false;
         }
-        if (this.completed != other.completed) {
-            return false;
-        }
+    
         if (!Objects.equals(this.title, other.title)) {
             return false;
         }

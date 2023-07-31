@@ -79,7 +79,7 @@ public class ActivityDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(false);
+        
 
         //add trip to db
         Trip addedTrip = tripDao.addTrip(trip);
@@ -87,7 +87,9 @@ public class ActivityDaoImplTest {
         //create new activity and add trip to activity
         Activity activity = new Activity();
         activity.setName("Meetup at gare centrale");
-        activity.setTripId(addedTrip.getId());
+        activity.setAddress("895 rue de la gauchitere O");
+        activity.setDescription("meet up at the station");
+        activity.setTrip(addedTrip);
 
         //add activity to db
         Activity added = activityDao.addActivity(activity);
@@ -108,17 +110,21 @@ public class ActivityDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(false);
+        
         Trip addedTrip = tripDao.addTrip(trip);
 
         Activity activity = new Activity();
         activity.setName("Get ice cream at the Pier");
-        activity.setTripId(addedTrip.getId());
+        activity.setTrip(addedTrip);
+        activity.setAddress("pont martino");
+        activity.setDescription("meet up at the beach");
         Activity addedActivity1 = activityDao.addActivity(activity);
 
         Activity activity2 = new Activity();
         activity2.setName("Surf on the beach");
-        activity2.setTripId(addedTrip.getId());
+        activity2.setTrip(addedTrip);
+        activity2.setAddress("staint martina beach");
+        activity2.setDescription("meet up at the beach");
         Activity addedActivity2 = activityDao.addActivity(activity2);
 
         List<Activity> activities = activityDao.getAllActivities();
@@ -140,12 +146,14 @@ public class ActivityDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(false);
+        
         Trip addedTrip = tripDao.addTrip(trip);
 
         Activity activity = new Activity();
         activity.setName("Brunch and mimosa party on queen Street");
-        activity.setTripId(addedTrip.getId());
+        activity.setAddress("800 queen street");
+        activity.setDescription("meet up at the Oregano");
+        activity.setTrip(addedTrip);
         Activity addedActivity = activityDao.addActivity(activity);
 
         Activity fromDao = activityDao.getActivityByID(addedActivity.getId());
@@ -171,12 +179,14 @@ public class ActivityDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(true);
+        
         Trip addedTrip = tripDao.addTrip(trip);
 
         Activity activity = new Activity();
         activity.setName("Netflix party");
-        activity.setTripId(addedTrip.getId());
+        activity.setTrip(addedTrip);
+        activity.setAddress("home");
+        activity.setDescription("bring your jammies");
         Activity addedActivity = activityDao.addActivity(activity);
 
         activityDao.deleteActivityByID(addedActivity.getId());

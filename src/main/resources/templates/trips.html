@@ -4,7 +4,8 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <!--        custom css-->
+        <link th:href="@{/styles/styles.css}" rel="stylesheet" />
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Trips</title>
@@ -12,27 +13,29 @@
     <body>
         <div class="container" xmlns:th="http://www.w3.org/1999/xhtml">
             <div class="row m-4">
-                <div class="col text-center border border-dark">
+                <div class="col text-center ">
                     <h1><a href="/" class="text-dark">GlobeTrotter</a></h1>
                 </div>
             </div>
-            <div class="row m-4 border border-dark">
+       <div class="row m-4  ">
 
                 <div class="col text-center m-3">
-                    <a href="trips" class="btn btn-outline-primary btn-lg">Trips</a>
+                    <a href="trips" class="btn  btn-lg rounded-circle border-bottom">Trips</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="travellers" class="btn btn-outline-primary btn-lg">Travellers</a>
+                    <a href="travellers" class="btn  btn-lg rounded-circle">Travellers</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="accomodations" class="btn btn-outline-primary btn-lg">Accomodations</a>
+                    <a href="accomodations" class="btn  btn-lg rounded-circle border-bottom">Accomodations</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="activities" class="btn btn-outline-primary btn-lg">Activities</a>
+                    <a href="activities" class="btn  btn-lg rounded-circle">Activities</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="budgets" class="btn  btn-lg rounded-circle border-bottom">Budgets</a>
                 </div>
             </div>
-
-            <div class="row m-4 border border-dark">
+            <div class="row m-4 ">
 
                 <div class="col-12 m-1 text-center"
                      th:if="${!errors.isEmpty()}">
@@ -94,13 +97,7 @@
                             </div>
 
                         </div>
-                        <div class="form-group row">
 
-                            <div class="col-9">
-                                <input type="checkbox" id="completed" name="completed">
-                                <label for="completed">Completed?</label><br>
-                            </div>
-                        </div>
 
 
                         <button type="submit" class="btn btn-primary">Add Trip</button>
@@ -108,33 +105,33 @@
                 </div>
 
             </div>
-            <div class="row m-4 border border-dark">
+            <div class="row m-4 ">
 
-                <div class="col text-center m-3">
+                <div class="col text-center m-3" th:if="${trips != null and !trips.empty}">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                           
                                 <th>Title</th>
                                 <th>Start</th>
                                 <th>End</th>
                                 <th>Type</th>
                                 <th>Description</th>
-                                <th>complete</th>
+                              
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="trip : ${trips}">
-                                <td th:text="${trip.id}">ID</td>
+                               
                                 <td th:text="${trip.title}">Title</td>
                                 <td th:text="${trip.startDate}">Start</td>
                                 <td th:text="${trip.endDate}"> End</td>
                                 <td th:text="${trip.type}">Type</td>
                                 <td th:text="${trip.description}"> Description</td>
-                                <td th:text="${trip.completed}"> Completed</td>
-                               <td><a href="#" th:href="@{/editTrip(id=${trip.id})}">Edit</a></td>
+                               
+                                <td><a href="#" th:href="@{/editTrip(id=${trip.id})}">Edit</a></td>
                                 <td><a href="#" th:href="@{/deleteTrip(id=${trip.id})}">Delete</a></td>
                             </tr>
                         </tbody>

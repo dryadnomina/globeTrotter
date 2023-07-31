@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!--        custom css-->
+        <link th:href="@{/styles/styles.css}" rel="stylesheet" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <title>Edit Activity</title>
+    </head>
+    <body>
+        <!-- Main Body of Page -->
+        <div class="container">
+            <div class="row m-4">
+                <div class="col text-center  ">
+                    <h1><a href="/" class="text-dark">GlobeTrotter</a></h1>
+                </div>
+            </div>
+            <div class="row m-3  ">
+         <div class="row m-4  ">
+
+                <div class="col text-center m-3">
+                    <a href="trips" class="btn  btn-lg rounded-circle border-bottom">Trips</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="travellers" class="btn  btn-lg rounded-circle">Travellers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="accomodations" class="btn  btn-lg rounded-circle border-bottom">Accomodations</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="activities" class="btn  btn-lg rounded-circle">Activities</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="budgets" class="btn  btn-lg rounded-circle border-bottom">Budgets</a>
+                </div>
+            </div>
+                <div class="row m-3  ">
+                    <div class="col-9 text-center m-3">
+                        <span class="h3">Edit Budget</span>
+                    </div>
+                    <div class="col-8 text-center m-3">
+                        <form action="editBudget" method="POST">
+                            <input type="hidden" name="id" id="id" th:value="${budget.id}"/>
+                            <div class="form-group row">
+                                <label for="name" class="col-3 col-form-label">
+                                    Budget Name</label>
+                                <div class="col-9">
+                                    <input type="text" name="name"
+                                           id="name" class="form-control" th:value="${budget.name}"/>
+                                    <div th:if="${#fields.hasErrors('budget.name')}">
+                                        <p th:each="error : ${#fields.errors('budget.name')}"
+                                           class="alert alert-danger" th:text="${error}">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="accomodationCost" class="col-3 col-form-label">
+                                    Accomodation Cost</label>
+                                <div class="col-9">
+                                    <input type="number" name="accomodationCost"
+                                           id="accomodationCost"
+                                           min="0.00"
+                                           th:value ="${budget.accomodationCost}"
+                                           step=".01"    
+                                           pattern ="\d+\.\d\d(?!\d)"
+                                           title="Number must be a decimal (ex.12.34)"
+                                           class="form-control"/>
+                                    <div th:if="${#fields.hasErrors('budget.accomodationCost')}">
+                                        <p th:each="error : ${#fields.errors('budget.accomodationCost')}"
+                                           class="alert alert-danger" th:text="${error}">
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="foodCost" class="col-3 col-form-label">
+                                    Food Cost</label>
+                                <div class="col-9">
+                                    <input type="number" name="foodCost"
+                                           id="foodCost"
+                                           min="0.00"
+                                           th:value ="${budget.foodCost}"
+                                           step=".01"    
+                                           pattern ="\d+\.\d\d(?!\d)"
+                                           title="Number must be a decimal (ex.12.34)"
+                                           class="form-control"/>
+                                    <div th:if="${#fields.hasErrors('budget.foodCost')}">
+                                        <p th:each="error : ${#fields.errors('budget.foodCost')}"
+                                           class="alert alert-danger" th:text="${error}">
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="activityCost" class="col-3 col-form-label">
+                                    Activity Cost</label>
+                                <div class="col-9">
+                                    <input type="number" name="activityCost"
+                                           id="activityCost"
+                                           min="0.00"
+                                           th:value ="${budget.activityCost}"
+                                           step=".01"    
+                                           pattern ="\d+\.\d\d(?!\d)"
+                                           title="Number must be a decimal (ex.12.34)"
+                                           class="form-control"/>
+                                    <div th:if="${#fields.hasErrors('budget.activityCost')}">
+                                        <p th:each="error : ${#fields.errors('budget.activityCost')}"
+                                           class="alert alert-danger" th:text="${error}">
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="form-group row">
+                                <label for="transportationCost" class="col-3 col-form-label">
+                                    transportation Cost</label>
+                                <div class="col-9">
+                                    <input type="text" name="transportationCost"
+                                           id="transportationCost"
+                                           th:value ="${budget.transportationCost}" 
+                                           min="0.00"
+                                           pattern ="\d+\.\d\d(?!\d)"
+                                           title="Number must be a decimal (ex.12.34)"
+                                           class="form-control"/>
+                                    <div th:if="${#fields.hasErrors('budget.transportationCost')}">
+                                        <p th:each="error : ${#fields.errors('budget.transportationCost')}"
+                                           class="alert alert-danger" th:text="${error}">
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="tripId" class="col-3 col-form-label">
+                                    Trip</label>
+                                <div class="col-9">
+                                    <select id="tripId" name="tripId" class="form-control"  th:value="${budget.tripId}" >
+                                        <option th:each="trip : ${trips}"
+                                                th:value="${trip.id}"
+                                                th:text="${trip.title}">
+                                            Trip Name
+                                        </option>
+
+
+                                    </select>
+
+                                    <div th:if="${#fields.hasErrors('budget.tripId')}">
+                                        <p th:each="error : ${#fields.errors('budget.tripId')}"
+                                           class="alert alert-danger" th:text="${error}">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Edit Budget</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- End main body -->
+
+            <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>;
