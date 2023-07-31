@@ -7,8 +7,6 @@ package com.sg.globeTrotter.controller;
 import com.sg.globeTrotter.dto.Traveller;
 import com.sg.globeTrotter.dto.Trip;
 import com.sg.globeTrotter.service.GlobeTrotterService;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -60,6 +58,8 @@ public class TravellerController {
     public String addTravellerToTrip(Integer id, Integer tripId, Model model) {
         Traveller traveller = service.getTravellerByID(id);
         model.addAttribute("traveller", traveller);
+        
+        System.out.println("tripId" + tripId);
         service.addTravellerToTrip(id, tripId);
         return "redirect:/travellers";
     }

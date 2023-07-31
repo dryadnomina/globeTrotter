@@ -105,8 +105,8 @@
                 </div>
 
 
-                <div class="col text-center m-4">
-                    <form action="addTravellerToTrip" method="POST">
+                <div class="col m-4">
+                    <form class="mx-auto col-10 col-md-8 col-lg-6" action="addTravellerToTrip" method="POST">
                         <div class="form-group row">
                             <input type="hidden" name="id" id="id" th:value="${traveller.id}"/>
                             <label for="tripId" class="col-3 col-form-label">
@@ -116,18 +116,14 @@
                                     <option th:each="trip : ${trips}"
                                             th:value="${trip.id}"
                                             th:text="${trip.title}"
-
-                                            > trip name</option>
-
-
-
+                                         > trip name</option>
                                 </select>
 
 
                             </div>
                         </div>
-                        <div
-                            <button type="submit" class="btn btn-primary">Add Traveller to Trip</button>
+                        <div class="form-group col  p-5 ">
+                            <button type="submit" class="btn btn-primary text-center m-0">Add Traveller to Trip</button>
                         </div>
                     </form>
                 </div>
