@@ -20,6 +20,7 @@ public class BudgetMapper implements RowMapper<Budget> {
     public Budget mapRow(ResultSet rs, int rowNum) throws SQLException {
         Budget budget = new Budget();
         budget.setId(rs.getInt("budgetId"));
+        budget.setName(rs.getString("name"));
         budget.setAccomodationCost(rs.getBigDecimal("accomodationCost"));
         budget.setFoodCost(rs.getBigDecimal("foodCost"));
         budget.setActivityCost(rs.getBigDecimal("activityCost"));

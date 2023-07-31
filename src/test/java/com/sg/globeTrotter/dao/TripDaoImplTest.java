@@ -71,7 +71,7 @@ public class TripDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(false);
+        
 
         Trip addedTrip = tripDao.addTrip(trip);
 
@@ -91,7 +91,7 @@ public class TripDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(false);
+        
         Trip addedTrip1 = tripDao.addTrip(trip);
 
         Trip trip2 = new Trip();
@@ -103,7 +103,7 @@ public class TripDaoImplTest {
 
         trip2.setStartDate(dateStart2);
         trip2.setEndDate(dateEnd2);
-        trip2.setCompleted(false);
+       
         Trip addedTrip2 = tripDao.addTrip(trip2);
 
         List<Trip> trips = tripDao.getAllTrips();
@@ -124,7 +124,7 @@ public class TripDaoImplTest {
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
         trip.setType("cultural");
-        trip.setCompleted(false);
+        
         Trip addedTrip = tripDao.addTrip(trip);
 
         Trip fromDao = tripDao.getTripByID(addedTrip.getId());
@@ -145,7 +145,7 @@ public class TripDaoImplTest {
         trip.setTitle("Honeymoon on the moon");
         trip.setDescription("Space the final frontier");
         trip.setType("adventure");
-        trip.setCompleted(true);
+        
 
         LocalDate dateStart = LocalDate.now();
         LocalDate dateEnd = LocalDate.now().plusDays(2);

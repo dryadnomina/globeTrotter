@@ -90,7 +90,7 @@ public class BudgetDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(false);
+
         //add trip to database
         Trip addedTrip = tripDao.addTrip(trip);
         //create new activity
@@ -104,6 +104,7 @@ public class BudgetDaoImplTest {
 
         //create new activity budget
         Budget budget = new Budget();
+        budget.setName("cool budget");
         budget.setAccomodationCost(new BigDecimal("10.00"));
         budget.setFoodCost(new BigDecimal("15.00"));
         budget.setTransportationCost(new BigDecimal("10.00"));
@@ -129,7 +130,7 @@ public class BudgetDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(true);
+
         Trip addedTrip = tripDao.addTrip(trip);
 
         Activity activity = new Activity();
@@ -140,6 +141,7 @@ public class BudgetDaoImplTest {
         Activity addedActivity = activityDao.addActivity(activity);
 
         Budget budget = new Budget();
+        budget.setName("cool budget");
         budget.setAccomodationCost(new BigDecimal("10.00"));
         budget.setFoodCost(new BigDecimal("15.00"));
         budget.setTransportationCost(new BigDecimal("10.00"));
@@ -149,6 +151,7 @@ public class BudgetDaoImplTest {
 
         budgetDao.addBudget(budget);
         Budget budget2 = new Budget();
+        budget2.setName("fire budget");
         budget2.setAccomodationCost(new BigDecimal("10.00"));
         budget2.setFoodCost(new BigDecimal("15.00"));
         budget2.setTransportationCost(new BigDecimal("10.00"));
@@ -176,7 +179,7 @@ public class BudgetDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(true);
+
         Trip addedTrip = tripDao.addTrip(trip);
 
         Activity activity = new Activity();
@@ -187,6 +190,7 @@ public class BudgetDaoImplTest {
         Activity addedActivity = activityDao.addActivity(activity);
 
         Budget budget = new Budget();
+        budget.setName("cool budget");
         budget.setAccomodationCost(new BigDecimal("10.00"));
         budget.setFoodCost(new BigDecimal("15.00"));
         budget.setTransportationCost(new BigDecimal("10.00"));
@@ -218,7 +222,7 @@ public class BudgetDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(true);
+
         Trip addedTrip = tripDao.addTrip(trip);
 
         Activity activity = new Activity();
@@ -229,6 +233,7 @@ public class BudgetDaoImplTest {
         Activity addedActivity = activityDao.addActivity(activity);
 
         Budget budget = new Budget();
+        budget.setName("cool budget");
         budget.setAccomodationCost(new BigDecimal("10.00"));
         budget.setFoodCost(new BigDecimal("15.00"));
         budget.setTransportationCost(new BigDecimal("10.00"));

@@ -4,7 +4,8 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <!--        custom css-->
+        <link th:href="@{/styles/styles.css}" rel="stylesheet" />
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Trips</title>
@@ -110,26 +111,26 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                           
                                 <th>Title</th>
                                 <th>Start</th>
                                 <th>End</th>
                                 <th>Type</th>
                                 <th>Description</th>
-                                <th>complete</th>
+                              
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="trip : ${trips}">
-                                <td th:text="${trip.id}">ID</td>
+                               
                                 <td th:text="${trip.title}">Title</td>
                                 <td th:text="${trip.startDate}">Start</td>
                                 <td th:text="${trip.endDate}"> End</td>
                                 <td th:text="${trip.type}">Type</td>
                                 <td th:text="${trip.description}"> Description</td>
-                                <td th:text="${trip.completed}"> Completed</td>
+                               
                                 <td><a href="#" th:href="@{/editTrip(id=${trip.id})}">Edit</a></td>
                                 <td><a href="#" th:href="@{/deleteTrip(id=${trip.id})}">Delete</a></td>
                             </tr>

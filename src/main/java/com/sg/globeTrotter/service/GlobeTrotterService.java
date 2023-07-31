@@ -28,6 +28,8 @@ public interface GlobeTrotterService {
 
     void deleteTripByID(int id);
 
+    List<Trip> getAllTripsByTravellerID(int id);
+
 //traveller
     Traveller getTravellerByID(int id);
 
@@ -38,6 +40,8 @@ public interface GlobeTrotterService {
     void updateTraveller(Traveller traveller);
 
     void addTravellerToTrip(int id, int tripId);
+
+    Traveller checkforTravelleronTrip(int id, int tripId);
 
     void deleteTravellerByID(int id);
 
@@ -52,7 +56,7 @@ public interface GlobeTrotterService {
 
     void deleteActivityByID(int id);
 
-//Activity detail
+//Budget
     Budget getBudgetByID(int id);
 
     List<Budget> getAllBudgets();

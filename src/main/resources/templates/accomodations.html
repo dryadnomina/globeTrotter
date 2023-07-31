@@ -4,10 +4,11 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+          <!--        custom css-->
+        <link th:href="@{/styles/styles.css}" rel="stylesheet" />
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+        
     </head>
     <body>
         <div class="container" xmlns:th="http://www.w3.org/1999/xhtml">
@@ -112,7 +113,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                               
                                 <th>Accomodation Name</th>
                                 <th>Accomodation Type</th>
                                 <th>Accomodation Description</th>
@@ -123,7 +124,7 @@
                         </thead>
                         <tbody>
                             <tr th:each="accomodation : ${accomodations}">
-                                <td th:text="${accomodation.id}">ID</td>
+                              
                                 <td th:text="${accomodation.name}">Name</td>
                                 <td th:text="${accomodation.type}">Type</td>
                                 <td th:text="${accomodation.description}">Description</td>

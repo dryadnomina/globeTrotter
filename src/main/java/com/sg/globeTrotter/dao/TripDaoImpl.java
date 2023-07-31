@@ -34,6 +34,17 @@ public class TripDaoImpl implements TripDao {
     }
 
     @Override
+    public List<Trip> getAllTripsByTravellerID(Integer id) {
+        String sql = "SELECT Tri.*, Tra.*\n"
+                + "FROM trip Tri\n"
+                + "JOIN tripTraveller\n"
+                + "  ON Tri.tripId = tripTraveller.tripId\n"
+                + "JOIN traveller Tra\n"
+                + "  ON Tra.travellerId = tripTraveller.travellerId WHERE tripTraveller.travellerId = ?";
+        return jdbc.query(sql, new TripMapper(), id);
+    }
+
+    @Override
     public List<Trip> getAllTrips() {
         String sql = "SELECT * FROM trip";
         return jdbc.query(sql, new TripMapper());
@@ -50,7 +61,7 @@ public class TripDaoImpl implements TripDao {
                 trip.getDescription(),
                 trip.getStartDate(),
                 trip.getEndDate()
-                );
+        );
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         trip.setId(newId);
@@ -71,14 +82,16 @@ public class TripDaoImpl implements TripDao {
 
     @Override
     public void deleteTripByID(int id) {
+        final String sql = "DELETE FROM tripTraveller WHERE tripId = ?";
         final String sql1 = "DELETE FROM activity WHERE tripId = ?";
         final String sql2 = "DELETE FROM accomodation WHERE tripId = ?";
         final String sql3 = "DELETE FROM budget WHERE tripId = ?";
         final String sql4 = "DELETE FROM trip WHERE tripId = ?";
+        jdbc.update(sql, id);
         jdbc.update(sql1, id);
         jdbc.update(sql2, id);
         jdbc.update(sql3, id);
-         jdbc.update(sql4, id);
+        jdbc.update(sql4, id);
     }
 
 }

@@ -6,6 +6,7 @@ package com.sg.globeTrotter.dao;
 
 import com.sg.globeTrotter.dto.Traveller;
 import com.sg.globeTrotter.mappers.TravellerMapper;
+import com.sg.globeTrotter.mappers.TripMapper;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -51,18 +52,29 @@ public class TravellerDaoImpl implements TravellerDao {
                 traveller.getPhoneNumber(),
                 traveller.getCity(),
                 traveller.getPostalCode());
-        
-        
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         traveller.setId(newId);
         return traveller;
     }
-    
-    public void addTravellerToTrip(int id, int tripId){
-      String sql = "INSERT INTO tripTraveller (travellerId,tripId) VALUES (?,?)";
-        jdbc.update(sql, id,tripId);
-    
+
+    @Override
+    public void addTravellerToTrip(int id, int tripId) {
+        String sql = "INSERT IGNORE tripTraveller (travellerId,tripId) VALUES (?,?)";
+        jdbc.update(sql, id, tripId);
+
+    }
+
+    @Override
+    public Traveller checkIfTravellerJoinedTrip(int id, int tripId) {
+        String sql = "SELECT *\n"
+                + "FROM  tripTraveller\n"
+                + "JOIN trip \n"
+                + "  ON trip.tripId = tripTraveller.tripId\n"
+                + "JOIN traveller \n"
+                + "  ON Traveller.travellerId = tripTraveller.travellerId WHERE tripTraveller.travellerId = ? AND tripTraveller.tripId = ?";
+        return jdbc.queryForObject(sql, new TravellerMapper());
+
     }
 
     @Override
@@ -78,7 +90,9 @@ public class TravellerDaoImpl implements TravellerDao {
 
     @Override
     public void deleteTravellerByID(int id) {
-        String sql = "DELETE FROM traveller WHERE travellerId = ?";
+        String sql = "DELETE FROM tripTraveller WHERE travellerId = ?";
+        String sql2 = "DELETE FROM traveller WHERE travellerId = ?";
         jdbc.update(sql, id);
+        jdbc.update(sql2, id);
     }
 }

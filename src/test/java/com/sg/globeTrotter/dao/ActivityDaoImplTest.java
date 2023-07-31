@@ -79,7 +79,7 @@ public class ActivityDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(false);
+        
 
         //add trip to db
         Trip addedTrip = tripDao.addTrip(trip);
@@ -110,7 +110,7 @@ public class ActivityDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(false);
+        
         Trip addedTrip = tripDao.addTrip(trip);
 
         Activity activity = new Activity();
@@ -146,7 +146,7 @@ public class ActivityDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(false);
+        
         Trip addedTrip = tripDao.addTrip(trip);
 
         Activity activity = new Activity();
@@ -179,7 +179,7 @@ public class ActivityDaoImplTest {
 
         trip.setStartDate(dateStart);
         trip.setEndDate(dateEnd);
-        trip.setCompleted(true);
+        
         Trip addedTrip = tripDao.addTrip(trip);
 
         Activity activity = new Activity();

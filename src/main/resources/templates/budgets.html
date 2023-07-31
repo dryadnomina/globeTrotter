@@ -4,7 +4,8 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <!--        custom css-->
+        <link th:href="@{/styles/styles.css}" rel="stylesheet" />
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -16,24 +17,24 @@
                     <h1><a href="/" class="text-dark">GlobeTrotter</a></h1>
                 </div>
             </div>
-             <div class="row m-4 border border-dark">
+            <div class="row m-4 border border-dark">
 
-                    <div class="col text-center m-3">
-                        <a href="trips" class="btn btn-outline-primary btn-lg">Trips</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="travellers" class="btn btn-outline-primary btn-lg">Travellers</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="accomodations" class="btn btn-outline-primary btn-lg">Accomodations</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="activities" class="btn btn-outline-primary btn-lg">Activities</a>
-                    </div>
-                    <div class="col text-center m-3">
-                        <a href="budgets" class="btn btn-outline-primary btn-lg">Budgets</a>
-                    </div>
+                <div class="col text-center m-3">
+                    <a href="trips" class="btn btn-outline-primary btn-lg">Trips</a>
                 </div>
+                <div class="col text-center m-3">
+                    <a href="travellers" class="btn btn-outline-primary btn-lg">Travellers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="accomodations" class="btn btn-outline-primary btn-lg">Accomodations</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="activities" class="btn btn-outline-primary btn-lg">Activities</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="budgets" class="btn btn-outline-primary btn-lg">Budgets</a>
+                </div>
+            </div>
 
             <div class="row m-4 border border-dark">
 
@@ -50,11 +51,24 @@
                     <div th:if="${trips !=null and !trips.empty}">
                         <form action="addBudget" method="POST">
                             <div class="form-group row">
+                                <label for="name" class="col-3 col-form-label">
+                                   Budget Name</label>
+                                <div class="col-9">
+                                    <input type="text" name="name"
+                                           id="name"
+
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
                                 <label for="accomodationCost" class="col-3 col-form-label">
                                     Accomodation Cost</label>
                                 <div class="col-9">
                                     <input type="number" name="accomodationCost"
                                            id="accomodationCost"
+                                           pattern ="\d+\.\d\d(?!\d)"                                          
+                                           title="Number must be a decimal (ex.12.34)"
                                            value ="0.00"
                                            min="0"
                                            step=".01"
@@ -70,7 +84,8 @@
                                            value ="0.00"
                                            min="0.00"
                                            step=".01"
-                                           pattern ="\d+\.\d\d(?!\d)"
+                                           pattern ="\d+\.\d\d(?!\d)"                                          
+                                           title="Number must be a decimal (ex.12.34)"
                                            class="form-control"/>
                                 </div>
                             </div>
@@ -83,7 +98,8 @@
                                            min="0.00"
                                            value ="0.00"
                                            step=".01"
-                                           pattern ="\d+\.\d\d(?!\d)"
+                                           pattern ="\d+\.\d\d(?!\d)"                                          
+                                           title="Number must be a decimal (ex.12.34)"
                                            class="form-control"/>
                                 </div>
                             </div>
@@ -97,7 +113,8 @@
                                            min="0.00"
                                            value ="0.00"
                                            step=".01"
-                                           pattern ="\d+\.\d\d(?!\d)"
+                                           pattern ="\d+\.\d\d(?!\d)"                                           
+                                           title="Number must be a decimal (ex.12.34)"
                                            class="form-control"/>
                                 </div>
                             </div>
@@ -130,7 +147,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+
                                 <th>Accomodation Cost</th>
                                 <th>Food Cost</th>
                                 <th>Activity Cost</th>
@@ -143,7 +160,7 @@
                         </thead>
                         <tbody>
                             <tr th:each="budget : ${budgets}">
-                                <td th:text="${budget.id}">ID</td>
+
                                 <td th:text="${budget.accomodationCost}">Accomodation Cost</td>
                                 <td th:text="${budget.foodCost}">Food Cost</td>
                                 <td th:text="${budget.activityCost}">Activity Cost</td>

@@ -19,6 +19,7 @@ public interface TripDao {
     Trip addTrip(Trip trip);
 
     void updateTrip(Trip trip);
+    List<Trip> getAllTripsByTravellerID(Integer id);
 
     void deleteTripByID(int id);
 }

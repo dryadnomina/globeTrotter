@@ -4,7 +4,8 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <!--        custom css-->
+        <link th:href="@{/styles/styles.css}" rel="stylesheet" />
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -38,11 +39,7 @@
                     </div>
                 </div>
                 <div class="row m-4 border border-dark">
-                    <div class="col-6 text-right"><strong>ID</strong></div>
-                    <div class="col-6 text-left">
-                        <span th:text="${activity.id}"></span>
-                    </div>
-
+                    
                     <div class="col-6 text-right"><strong>Name</strong></div>
                     <div class="col-6 text-left">
                         <span th:text="${activity.name}"></span>

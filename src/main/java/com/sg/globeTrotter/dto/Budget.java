@@ -30,8 +30,19 @@ public class Budget {
     private BigDecimal total;
     @NotNull(message = "Trip cannot be null")
     private int tripId;
+     private Trip trip;
+   @NotBlank
+     @Size(max = 100, message = "Budget Name must be fewer than 100 characters")
+   private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
    
-    private Trip trip;
     public int getTripId() {
         return tripId;
     }
@@ -98,5 +109,61 @@ public class Budget {
         this.id = id;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.id;
+        hash = 97 * hash + Objects.hashCode(this.foodCost);
+        hash = 97 * hash + Objects.hashCode(this.accomodationCost);
+        hash = 97 * hash + Objects.hashCode(this.activityCost);
+        hash = 97 * hash + Objects.hashCode(this.transportationCost);
+        hash = 97 * hash + Objects.hashCode(this.total);
+        hash = 97 * hash + this.tripId;
+        hash = 97 * hash + Objects.hashCode(this.trip);
+        hash = 97 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Budget other = (Budget) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.tripId != other.tripId) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.foodCost, other.foodCost)) {
+            return false;
+        }
+        if (!Objects.equals(this.accomodationCost, other.accomodationCost)) {
+            return false;
+        }
+        if (!Objects.equals(this.activityCost, other.activityCost)) {
+            return false;
+        }
+        if (!Objects.equals(this.transportationCost, other.transportationCost)) {
+            return false;
+        }
+        if (!Objects.equals(this.total, other.total)) {
+            return false;
+        }
+        return Objects.equals(this.trip, other.trip);
+    }
+
+    
+    
     
 }

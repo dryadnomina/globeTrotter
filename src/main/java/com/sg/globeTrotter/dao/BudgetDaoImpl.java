@@ -68,12 +68,13 @@ public class BudgetDaoImpl implements BudgetDao {
 
     @Override
     public Budget addBudget(Budget budget) {
-        final String sql = "Insert INTO budget (accomodationCost,foodCost,transportationCost, activityCost,tripId,total) "
-                + "VALUES(?,?,?,?,?,?)";
+        final String sql = "Insert INTO budget (name,accomodationCost,foodCost,transportationCost, activityCost,tripId,total) "
+                + "VALUES(?,?,?,?,?,?,?)";
 
         calculateBudgetTotal(budget);
 
         jdbc.update(sql,
+                budget.getName(),
                 budget.getAccomodationCost().setScale(2, RoundingMode.HALF_UP),
                 budget.getFoodCost().setScale(2, RoundingMode.HALF_UP),
                 budget.getTransportationCost().setScale(2, RoundingMode.HALF_UP),
@@ -100,9 +101,10 @@ public class BudgetDaoImpl implements BudgetDao {
 
     @Override
     public void updateBudget(Budget budget) {
-        String sql = "UPDATE budget SET accomodationCost = ?,foodCost = ?,transportationCost = ?,activityCost = ?,tripId = ?, total = ? WHERE budgetId = ?";
+        String sql = "UPDATE budget SET name = ?, accomodationCost = ?,foodCost = ?,transportationCost = ?,activityCost = ?,tripId = ?, total = ? WHERE budgetId = ?";
         calculateBudgetTotal(budget);
         jdbc.update(sql,
+                   budget.getName(),
                 budget.getAccomodationCost().setScale(2, RoundingMode.HALF_UP),
                 budget.getFoodCost().setScale(2, RoundingMode.HALF_UP),
                 budget.getTransportationCost().setScale(2, RoundingMode.HALF_UP),

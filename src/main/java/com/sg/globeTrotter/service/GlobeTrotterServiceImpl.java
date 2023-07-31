@@ -53,8 +53,13 @@ public class GlobeTrotterServiceImpl implements GlobeTrotterService {
     }
 
     @Override
-    public Trip addTrip(Trip trip) {    
-        
+    public List<Trip> getAllTripsByTravellerID(int id) {
+        return tripDao.getAllTripsByTravellerID(id);
+    }
+
+    @Override
+    public Trip addTrip(Trip trip) {
+
         return tripDao.addTrip(trip);
     }
 
@@ -82,6 +87,11 @@ public class GlobeTrotterServiceImpl implements GlobeTrotterService {
     @Override
     public Traveller addTraveller(Traveller traveller) {
         return travellerDao.addTraveller(traveller);
+    }
+
+    @Override
+    public Traveller checkforTravelleronTrip(int id, int tripId) {
+        return travellerDao.checkIfTravellerJoinedTrip(id, tripId);
     }
 
     @Override
